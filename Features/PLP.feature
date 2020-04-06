@@ -4,6 +4,7 @@ Feature: Product Listing Page scenarios
   Background: 
     Given user is on Home Page
 #------------------------------------1-Drive---------------------------------------------------------
+ @test1
   Scenario: Verify that user is able to add experiences-drive via PDP with Guest user
     When User clicks on main Menu Experiences item and select "Drive"
     When User navigate to PLP throught experience option for selecting date to Book product

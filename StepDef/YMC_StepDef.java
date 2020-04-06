@@ -63,15 +63,19 @@ public class YMC_StepDef extends CATSCucumberConfig {
 		  
 		  @Then("^user click on card component on landing page$")
 		    public void user_click_on_card_component_on_landing_page() throws Throwable {
-			  Thread.sleep(3000);
-				catsAction.clickJS(CustomRules.locatorPresentInSite(website+".Header.Card_LandingPage",this.ormData));
+			    catsAction.pageLoadWait(); 
+			    catsAction.scrollDownByOffset("600");
+			    Thread.sleep(5000);    
+				catsAction.click(CustomRules.locatorPresentInSite(website+".Header.Card_LandingPage",this.ormData));
 				catsAction.pageLoadWait();
 		  }
 		  
 		  @Then("^user click on card component on listing page$")
 		    public void user_click_on_card_component_on_listing_page() throws Throwable {
-			  Thread.sleep(3000);
-				catsAction.clickJS(CustomRules.locatorPresentInSite(website+".Header.Card_ListingPage",this.ormData));
+			    catsAction.pageLoadWait(); 
+			    catsAction.scrollDownByOffset("600");
+			    Thread.sleep(5000);
+				catsAction.click(CustomRules.locatorPresentInSite(website+".Header.Card_ListingPage",this.ormData));
 				catsAction.pageLoadWait();
 		  }
 		  
@@ -84,17 +88,19 @@ public class YMC_StepDef extends CATSCucumberConfig {
 		  
 		  @Then("^user verify on My Profile button present under Profile icon is present$")
 		    public void user_verify_on_my_profile_button_present_under_profile_icon_is_present() throws Throwable {
-			  Thread.sleep(5000);
-				catsAction.clickJS(CustomRules.locatorPresentInSite(website + ".UserProfile.Profile",this.ormData));
-				catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website + ".UserProfile.MyProfile",this.ormData));
-				catsAction.pageLoadWait();
+			  catsAction.pageLoadWait();
+			  Thread.sleep(10000);
+			  catsAction.clickJS(CustomRules.locatorPresentInSite(website + ".UserProfile.Profile",this.ormData));
+			  catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website + ".UserProfile.MyProfile",this.ormData));
+			  catsAction.pageLoadWait();
 				Thread.sleep(3000);
 		  }
 		  
 		  @Then("^verify user logout successfully$")
 		    public void verify_user_logout_successfully() throws Throwable {
-			  Thread.sleep(5000);
-				catsAction.clickJS(CustomRules.locatorPresentInSite(website + ".UserProfile.Profile",this.ormData));
+			   catsAction.pageLoadWait();
+			   Thread.sleep(10000);
+				catsAction.click(CustomRules.locatorPresentInSite(website + ".Login.Profile",this.ormData));
 				catsAction.verifyElementNotPresent(CustomRules.locatorPresentInSite(website + ".UserProfile.MyProfile",this.ormData));
 			
 		  }
@@ -207,7 +213,7 @@ public class YMC_StepDef extends CATSCucumberConfig {
               Thread.sleep(2000);	
               catsAction.clickJS(CustomRules.locatorPresentInSite(website+".Header.HandF",this.ormData));
               Thread.sleep(5000);	
-              catsAction.clickJS(CustomRules.locatorPresentInSite(website+".Header.HandFtiles",this.ormData));
+            //  catsAction.clickJS(CustomRules.locatorPresentInSite(website+".Header.HandFtiles",this.ormData));
 
               }
               @Then("^User click on Register now$")
@@ -223,11 +229,11 @@ public class YMC_StepDef extends CATSCucumberConfig {
               Thread.sleep(5000);
               catsAction.waitUntilElementDisplay(CustomRules.locatorPresentInSite(website+".Contactuserror.FirstName",this.ormData),"15");
               Thread.sleep(4000);
-              catsAction.verifyAttributeValue(CustomRules.locatorPresentInSite(website+".Contactuserror.FirstName",this.ormData),"value","ROSHAN");
+              catsAction.verifyAttributeValue(CustomRules.locatorPresentInSite(website+".Contactuserror.FirstName",this.ormData),"value","AJAY");
               Thread.sleep(1000);
-              catsAction.verifyAttributeValue(CustomRules.locatorPresentInSite(website+".Contactuserror.lastname",this.ormData),"value","MOHANTY");
+              catsAction.verifyAttributeValue(CustomRules.locatorPresentInSite(website+".Contactuserror.lastname",this.ormData),"value","KUMAR");
               Thread.sleep(3000);
-              catsAction.verifyAttributeValue(CustomRules.locatorPresentInSite(website+".GuestCheckout.email",this.ormData),"value","SAPYAYMC@MAILINATOR.COM");
+              catsAction.verifyAttributeValue(CustomRules.locatorPresentInSite(website+".GuestCheckout.email",this.ormData),"value","AUTOMATIONYMC4@EMAIL.GHOSTINSPECTOR.COM");
 
               }
               @Then("^user enter the requried data$")
@@ -239,9 +245,9 @@ public class YMC_StepDef extends CATSCucumberConfig {
               catsAction.selectElementByValue(CustomRules.locatorPresentInSite(website+".Registration.TitelDropDown",this.ormData), "Mr");
               Thread.sleep(1500);
               catsAction.selectElementByValue(CustomRules.locatorPresentInSite(website + ".ProfilePagePreference.CountryDropDwn",this.ormData), "IN");
-              catsAction.click(CustomRules.locatorPresentInSite(website+".Contactuserror.countrydropdown",this.ormData));
+             // catsAction.clickJS(CustomRules.locatorPresentInSite(website+".Contactuserror.countrydropdown",this.ormData));
               Thread.sleep(1500);
-              catsAction.click(CustomRules.locatorPresentInSite(website+".Contactuserror.countrydropdown1",this.ormData));
+             // catsAction.clickJS(CustomRules.locatorPresentInSite(website+".Contactuserror.countrydropdown1",this.ormData));
               Thread.sleep(1500);
               catsAction.enter(CustomRules.locatorPresentInSite(website+".Registration.MobileNo",this.ormData), "$MiralGlobal.PhoneNoForGuestForm.<<site>>");
               Thread.sleep(1500);
@@ -280,12 +286,14 @@ public class YMC_StepDef extends CATSCucumberConfig {
                Thread.sleep(4000);
               catsAction.clickJS(CustomRules.locatorPresentInSite(website+".Registration.YasConferenceCenter",this.ormData));
               Thread.sleep(4000);
+              catsAction.pageLoadWait();
               catsAction.clickJS(CustomRules.locatorPresentInSite(website+".Registration.Quote",this.ormData));
               }
               @Then("^user fill quote form$")
               public void user_fill_quote_form() throws Throwable 
-              {
-                  Thread.sleep(2000);
+              {   
+            	  catsAction.pageLoadWait();
+                  Thread.sleep(10000);
                   catsAction.selectElementByValue(CustomRules.locatorPresentInSite(website+".Registration.NumberOfAttentend",this.ormData), "empty-key1");
                  Thread.sleep(2000);
                  catsAction.click(CustomRules.locatorPresentInSite(website+".Registration.DOBbox",this.ormData));

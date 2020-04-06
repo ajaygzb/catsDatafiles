@@ -233,10 +233,14 @@ public class WishList_verify_StepDef extends  CATSCucumberConfig{
 	@Then("^User click on Wishlist Tab And Verify$")
 	public void user_click_on_wishlist_tab_and_verify() throws Throwable 
 	{
-		Thread.sleep(2000);
+		try{Thread.sleep(2000);
 		catsAction.click(CustomRules.locatorPresentInSite(website+".WishListPage.WishListTab",this.ormData));
 		Thread.sleep(2000);
 		catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Wishlist.WishlistItem",this.ormData));
+		}catch(Exception e){
+			
+			System.out.println("Exception in Wishlist tab "+e);
+		}
 	}
 	@And("^User delete the wishlist$")
 	public void user_delete_the_wishlist() throws Throwable 

@@ -7,8 +7,8 @@ Feature: YMC regression Test cases
    
   Scenario: Verify that on the order confirmation screen, Download Ticket will be there which will download the e-ticket
     When User clicks on MyProfile link
-    And User enters gmail emailid
-    And User enters gmail password
+    And User enters emailid
+    And User enters password
     And user click on submit button
     When User click on add to cart icon on home page
     Then User empty minicart

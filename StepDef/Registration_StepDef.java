@@ -53,6 +53,7 @@ public class Registration_StepDef extends CATSCucumberConfig {
 	public void user_clicks_on_my_profile_button_present_under_profile_icon() throws Throwable {
 		Thread.sleep(12000);
 		catsAction.clickJS(CustomRules.locatorPresentInSite(website + ".UserProfile.Profile",this.ormData));
+		Thread.sleep(5000);
 		catsAction.clickJS(CustomRules.locatorPresentInSite(website + ".UserProfile.MyProfile",this.ormData));
 		catsAction.pageLoadWait();
 		Thread.sleep(3000);
@@ -60,10 +61,13 @@ public class Registration_StepDef extends CATSCucumberConfig {
 
 	@When("^user logs out$")
 	public void user_logs_out() throws Throwable {
-		catsAction.scrollUpByOffset("800");
+		catsAction.scrollPageUp();
+		catsAction.pageLoadWait();
+		Thread.sleep(10000);
+		catsAction.clickJS(CustomRules.locatorPresentInSite(website + ".Login.Profile",this.ormData));
 		Thread.sleep(5000);
-		catsAction.clickJS(CustomRules.locatorPresentInSite(website + ".UserProfile.Profile",this.ormData));
-		catsAction.clickJS(CustomRules.locatorPresentInSite(website + ".UserProfile.logout",this.ormData));
+		catsAction.click(CustomRules.locatorPresentInSite(website + ".UserProfile.logout",this.ormData));
+		catsAction.pageLoadWait();
 	}
 
 	@Then("^by default tab selected is MyProfile$")
@@ -178,11 +182,13 @@ public class Registration_StepDef extends CATSCucumberConfig {
 
 	@When("^User selects value \"([^\"]*)\" in travel selection box$")
 	public void user_selects_value_something_in_travel_selection_box(String valueToSelect) throws Throwable {
-
+        catsAction.pageLoadWait();
 		Thread.sleep(2000);
-		catsAction.click(CustomRules.locatorPresentInSite(website + ".ProfilePagePreference.PreferenceTravellingSelectionField",this.ormData));
-		catsAction.click(CustomRules.locatorPresentInSite(website + ".ProfilePagePreference.PreferenceTravellingSelectionFieldOptions",this.ormData));
-
+		//catsAction.click(CustomRules.locatorPresentInSite(website + ".ProfilePagePreference.PreferenceTravellingSelectionField",this.ormData));
+		Thread.sleep(2000);
+		//catsAction.click(CustomRules.locatorPresentInSite(website + ".ProfilePagePreference.PreferenceTravellingSelectionFieldOptions",this.ormData));
+		Thread.sleep(2000);
+		catsAction.selectElementByValue("//select[@id='travelling_with']","with_family_kids");
 		/*
 		 * catsAction.clickNClickPartialLink(website+
 		 * ".ProfilePagePreference.PreferenceTravellingSelectionField", valueToSelect);
@@ -208,6 +214,8 @@ public class Registration_StepDef extends CATSCucumberConfig {
 		Thread.sleep(2000);
 		catsAction.waitUntilElementDisplay(CustomRules.locatorPresentInSite(website + ".ProfilePagePreference.PreferencePageSaveButton",this.ormData), "10");
 		catsAction.clickJS(CustomRules.locatorPresentInSite(website + ".ProfilePagePreference.PreferencePageSaveButton",this.ormData));
+		catsAction.scrollPageUp();
+		catsAction.pageLoadWait();
 		Thread.sleep(10000);
 	}
 

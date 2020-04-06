@@ -1,14 +1,5 @@
 package cats.selenium.bdd.stepdef;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.List;
-import java.util.Properties;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-
 import com.sapient.qa.cats.core.framework.CATSCucumberConfig;
 
 
@@ -17,9 +8,7 @@ import cucumber.api.java.AfterStep;
 import cucumber.api.java.Before;
 import cucumber.api.java.BeforeStep;
 import cucumber.api.java.en.And;
-import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
 
 public class Contaactus_Validation extends CATSCucumberConfig {
 
@@ -70,14 +59,16 @@ public class Contaactus_Validation extends CATSCucumberConfig {
 		catsAction.pageLoadWait();
 		catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Contactuserror.Contactus",this.ormData));
 		Thread.sleep(2000);
-		catsAction.clickJS(CustomRules.locatorPresentInSite(website+".Contactuserror.Contactus",this.ormData));
+		catsAction.click(CustomRules.locatorPresentInSite(website+".Contactuserror.Contactus",this.ormData));
 
 	}
 
 	@Then("^Click on contact us submit contact us submit cta$")
 	public void click_on_contact_us_submit_contact_us_submit_cta() throws Throwable 
 	{
-		catsAction.scrollDownByOffset("1500");	
+		catsAction.scrollDownByOffset("1000");
+		catsAction.scrollIntoView(CustomRules.locatorPresentInSite(website+".Contactuserror.Contactussubmit",this.ormData));
+		Thread.sleep(5000);
 		catsAction.clickJS(CustomRules.locatorPresentInSite(website+".Contactuserror.Contactussubmit",this.ormData));
 	}
 
@@ -124,25 +115,39 @@ public class Contaactus_Validation extends CATSCucumberConfig {
 
 	@Then("^user fill  contact us form$")
 	public void user_fill_contact_us_form() throws Throwable {
-
+        catsAction.pageLoadWait();
+        Thread.sleep(10000);
 		catsAction.enter(CustomRules.locatorPresentInSite(website+".Contactuserror.FirstName",this.ormData), "$MiralGlobal.NameForGuestForm.<<site>>");
+		Thread.sleep(2000);
 		catsAction.enter(CustomRules.locatorPresentInSite(website+".Contactuserror.lastname",this.ormData), "$MiralGlobal.SurnameForGuestForm.<<site>>");
+		Thread.sleep(2000);
 		catsAction.enter(CustomRules.locatorPresentInSite(website+".GuestCheckout.email",this.ormData), "$MiralGlobal.EmailforLogin.<<site>>");
-		catsAction.enter(CustomRules.locatorPresentInSite(website+".Contactuserror.PhoneNo",this.ormData), "$MiralGlobal.PhoneNoForGuestForm.<<site>>");
+		Thread.sleep(2000);		
+		//catsAction.enterAppend(CustomRules.locatorPresentInSite(website+".Contactuserror.PhoneNo",this.ormData), "$MiralGlobal.PhoneNoForGuestForm.<<site>>");
+		Thread.sleep(2000);
+		
+
 		switch (website){
 
 		case("YMC"):
-			catsAction.click(CustomRules.locatorPresentInSite(website+".Contactuserror.PhnRadioBtn",this.ormData));
-		
+			Thread.sleep(2000);
+			catsAction.clickJS(CustomRules.locatorPresentInSite(website+".Contactuserror.PhnRadioBtn",this.ormData));
+			Thread.sleep(2000);
 		catsAction.selectElementByValue(CustomRules.locatorPresentInSite(website+".Contactuserror.ReasonDropDwnContact",this.ormData) ,"180000011");
-        catsAction.enter(CustomRules.locatorPresentInSite(website+".Contactuserror.Message",this.ormData), "$MiralGlobal.ADCB_Coupon.<<site>>");
-		catsAction.clickJS(CustomRules.locatorPresentInSite(website+".Ticket.Terms&Conditions",this.ormData));
+		Thread.sleep(2000);
+		catsAction.enter(CustomRules.locatorPresentInSite(website+".Contactuserror.Message",this.ormData), "$MiralGlobal.ADCB_Coupon.<<site>>");
+        Thread.sleep(2000);
+    //    catsAction.enterAppend(CustomRules.locatorPresentInSite(website+".Contactuserror.PhoneNo",this.ormData), "$MiralGlobal.PhoneNoForGuestForm.<<site>>");
+        catsAction.enterDataJS(CustomRules.locatorPresentInSite(website+".Contactuserror.PhoneNo",this.ormData), "$MiralGlobal.PhoneNoForGuestForm.<<site>>");
+        
+        Thread.sleep(10000);
+        catsAction.clickJS(CustomRules.locatorPresentInSite(website+".Ticket.Terms&Conditions",this.ormData));
 		break;
 		default:
             catsAction.enter(CustomRules.locatorPresentInSite(website+".Contactuserror.FirstName",this.ormData), "$MiralGlobal.NameForGuestForm.<<site>>");
 			catsAction.enter(CustomRules.locatorPresentInSite(website+".Contactuserror.lastname",this.ormData), "$MiralGlobal.SurnameForGuestForm.<<site>>");
 			catsAction.enter(CustomRules.locatorPresentInSite(website+".GuestCheckout.email",this.ormData), "$MiralGlobal.EmailforLogin.<<site>>");
-			catsAction.enter(CustomRules.locatorPresentInSite(website+".Contactuserror.PhoneNo",this.ormData), "$MiralGlobal.PhoneNoForGuestForm.<<site>>");
+		//	catsAction.enter(CustomRules.locatorPresentInSite(website+".Contactuserror.PhoneNo",this.ormData), "$MiralGlobal.PhoneNoForGuestForm.<<site>>");
 			catsAction.selectElementByIndex(CustomRules.locatorPresentInSite(website+".Contactuserror.ReasonDropDown",this.ormData) ,"2");
 			catsAction.enter(CustomRules.locatorPresentInSite(website+".Contactuserror.Message",this.ormData), "$MiralGlobal.ADCB_Coupon.<<site>>");
 			catsAction.clickJS(CustomRules.locatorPresentInSite(website+".Ticket.Terms&Conditions",this.ormData));
@@ -170,27 +175,29 @@ public class Contaactus_Validation extends CATSCucumberConfig {
     switch (website){
 
   		case("YMC"):
-  	       catsAction.scrollPageDown();
-  	    catsAction.scrollIntoView(CustomRules.locatorPresentInSite(website+".Contactuserror.FirstName",this.ormData));
-  	    Thread.sleep(5000);
-  	    catsAction.waitUntilElementDisplay(CustomRules.locatorPresentInSite(website+".Contactuserror.FirstName",this.ormData),"15");
-  	    Thread.sleep(5000);
-  	    catsAction.verifyAttributeValue(CustomRules.locatorPresentInSite(website+".Contactuserror.FirstName",this.ormData),"value","ROSHAN");
-  	          Thread.sleep(1000);
-  	    catsAction.verifyAttributeValue(CustomRules.locatorPresentInSite(website+".Contactuserror.lastname",this.ormData),"value","MOHANTY");
-  	      Thread.sleep(5000);
-  	catsAction.click(CustomRules.locatorPresentInSite(website+".Contactuserror.PhnRadioBtn",this.ormData));
-  	Thread.sleep(2000);
-	catsAction.selectElementByValue(CustomRules.locatorPresentInSite(website+".Contactuserror.ReasonDropDwnContact",this.ormData) ,"180000011");
+  			catsAction.scrollPageDown();
+  		catsAction.scrollIntoView(CustomRules.locatorPresentInSite(website+".Contactuserror.FirstName",this.ormData));
+  		Thread.sleep(5000);
+  		catsAction.waitUntilElementDisplay(CustomRules.locatorPresentInSite(website+".Contactuserror.FirstName",this.ormData),"15");
+  		Thread.sleep(5000);
+  		catsAction.verifyAttributeValue(CustomRules.locatorPresentInSite(website+".Contactuserror.FirstName",this.ormData),"value","AJAY");
+  		Thread.sleep(1000);
+  		catsAction.verifyAttributeValue(CustomRules.locatorPresentInSite(website+".Contactuserror.lastname",this.ormData),"value","KUMAR");
+  		Thread.sleep(5000);
+  		catsAction.clickJS(CustomRules.locatorPresentInSite(website+".Contactuserror.PhnRadioBtn",this.ormData));
+  		Thread.sleep(2000);
+  		catsAction.selectElementByValue(CustomRules.locatorPresentInSite(website+".Contactuserror.ReasonDropDwnContact",this.ormData) ,"180000011");
 
-   catsAction.verifyAttributeValue(CustomRules.locatorPresentInSite(website+".GuestCheckout.email",this.ormData),"value","SAPYAYMC@MAILINATOR.COM");
-         Thread.sleep(1000);
-   catsAction.verifyAttributeValue(CustomRules.locatorPresentInSite(website+".Contactuserror.PhoneNo",this.ormData),"value","9908976543");
-         Thread.sleep(1000);
-catsAction.enter(CustomRules.locatorPresentInSite(website+".Contactuserror.Message",this.ormData), "This is Test Mesage");
-   catsAction.scrollIntoView(CustomRules.locatorPresentInSite(website+".Contactuserror.Message",this.ormData));
-         Thread.sleep(2000);
-   catsAction.clickJS(CustomRules.locatorPresentInSite(website+".Contactuserror.TermsAndCondition",this.ormData));
+  		catsAction.verifyAttributeValue(CustomRules.locatorPresentInSite(website+".GuestCheckout.email",this.ormData),"value","AUTOMATIONYMC4@EMAIL.GHOSTINSPECTOR.COM");
+  		Thread.sleep(1000);
+  		//catsAction.verifyAttributeValue(CustomRules.locatorPresentInSite(website+".Contactuserror.PhoneNo",this.ormData),"value","9908976543");
+  		Thread.sleep(1000);
+  		catsAction.enter(CustomRules.locatorPresentInSite(website+".Contactuserror.Message",this.ormData), "This is Test Mesage");
+  		catsAction.scrollIntoView(CustomRules.locatorPresentInSite(website+".Contactuserror.Message",this.ormData));
+  		Thread.sleep(2000);
+  		 catsAction.enterDataJS(CustomRules.locatorPresentInSite(website+".Contactuserror.PhoneNo",this.ormData), "$MiralGlobal.PhoneNoForGuestForm.<<site>>");
+         Thread.sleep(10000);
+  		catsAction.clickJS(CustomRules.locatorPresentInSite(website+".Contactuserror.TermsAndCondition",this.ormData));
          break;
   		default:
   	      catsAction.scrollPageDown();

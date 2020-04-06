@@ -59,7 +59,7 @@ public class Login_StepDef extends CATSCucumberConfig {
 	public void user_is_on_home_page() throws Throwable {
 		catsAction.launchSite("$MiralGlobal.LaunchSite<<env>>.<<site>>");
 		catsAction.pageLoadWait();
-		catsAction.waitUntilElementDisplay(CustomRules.locatorPresentInSite(website+".Language.CookieClose",this.ormData),"20");
+		catsAction.waitUntilElementDisplay(CustomRules.locatorPresentInSite(website+".Language.CookieClose",this.ormData),"120");
 		Thread.sleep(2000); 
 		catsAction.clickJS(CustomRules.locatorPresentInSite(website+".Language.CookieAccept",this.ormData));
 	}
@@ -136,6 +136,8 @@ public class Login_StepDef extends CATSCucumberConfig {
 	{
 		catsAction.click(CustomRules.locatorPresentInSite(website+".Home.ForgotButton",this.ormData));
 	}
+	
+	
 
 	@Then("^User click on logout button$")
 	public void user_click_on_logout_button() throws Throwable  {
@@ -153,7 +155,7 @@ public class Login_StepDef extends CATSCucumberConfig {
 	public void user_hover_and_click_on_my_profile() throws Throwable {
 
 		catsAction.scrollPageUp();
-		Thread.sleep(2000);
+		Thread.sleep(5000);
 		catsAction.hover(CustomRules.locatorPresentInSite(website + ".Login.Profile",this.ormData));
 		Thread.sleep(1000);
 		catsAction.click(CustomRules.locatorPresentInSite(website+".Login.ProfileLink",this.ormData));

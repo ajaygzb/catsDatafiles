@@ -41,6 +41,8 @@ Background:
     #Then user validate media prefiiled registaion form
     #Then Close browser
  #merge
+ 
+ 
  Scenario: User is able to verify HeathAndFitness programm  form
            When User clicks on MyProfile link
            Then User enters emailid
@@ -54,6 +56,7 @@ Background:
            Then Click on contact us submit contact us submit cta
            And  user able to see Captcha error message
            Then Close browser
+ @test1          
  Scenario: User is able to submit Quote page form through Creative Service page
            When User clicks on MyProfile link
            Then User enters emailid

@@ -110,124 +110,83 @@ Feature: YMC regression Test cases
 #    And verify coupon removed from minicart
 #    Then Close browser
 
- @test3
-  Scenario: Verify that on the order confirmation screen of a dated Product, following fields should be displayed Order ID,Product Name ,Product Quantity,Date valid
-    When User clicks on MyProfile link
-    And User enters emailid
-    And User enters password
-    And user click on submit button
-    When User click on add to cart icon on home page
-    Then User empty minicart
-    When User clicks on main Menu Experiences item and select "Drag"
-    When User navigate to PLP throught experience option for selecting date to Book product
-    And User select country of issue
-    And User click on Terms and condition checkbox
-    And User click on Add to cart Button on select Date Overlay
-    And Verify user Navigate to Booking Page and Minicart is present
-    And user verifies the product amount listed on cart
-    When user click on Check out button of mini cart
-    Then Verfy User Navigate to Mypayment page and invoice Summary is present
-    When user enter payment information with credit card
-    And select terms and condition checkbox
-    And click on Confirm order button
-    Then user redirected to payment confirmation page
-    And user verify Order id is displayed
-    And user verify Product Name is displayed
-    And user verify Product Quantity is displayed
-    And user verify Date valid is displayed
-    Then Close browser
+# @test3 ---- Moved to YMC_PurchaseHistory.feature
+#  Scenario: Verify that on the order confirmation screen of a dated Product, following fields should be displayed Order ID,Product Name ,Product Quantity,Date valid
+#    When User clicks on MyProfile link
+#    And User enters emailid
+#    And User enters password
+#    And user click on submit button
+#    When User click on add to cart icon on home page
+#    Then User empty minicart
+#    When User clicks on main Menu Experiences item and select "Drag"
+#    When User navigate to PLP throught experience option for selecting date to Book product
+#    And User select country of issue
+#    And User click on Terms and condition checkbox
+#    And User click on Add to cart Button on select Date Overlay
+#    And Verify user Navigate to Booking Page and Minicart is present
+#    And user verifies the product amount listed on cart
+#    When user click on Check out button of mini cart
+#    Then Verfy User Navigate to Mypayment page and invoice Summary is present
+#    When user enter payment information with credit card
+#    And select terms and condition checkbox
+#    And click on Confirm order button
+#    Then user redirected to payment confirmation page
+#    And user verify Order id is displayed
+#    And user verify Product Name is displayed
+#    And user verify Product Quantity is displayed
+#    And user verify Date valid is displayed
+#    Then Close browser
 
-  @test4
-  Scenario: Verify that a list of orders Placed by user is displayed when the user navigates to Order History section
-    When User clicks on MyProfile link
-    And User enters emailid
-    And User enters password
-    And user click on submit button
-    When User click on add to cart icon on home page
-    Then User empty minicart
-    When User clicks on main Menu Experiences item and select "Drag"
-    When User navigate to PLP throught experience option for selecting date to Book product
-    And User select country of issue
-    And User click on Terms and condition checkbox
-    And User click on Add to cart Button on select Date Overlay
-    And Verify user Navigate to Booking Page and Minicart is present
-    And user verifies the product amount listed on cart
-    When user click on Check out button of mini cart
-    Then Verfy User Navigate to Mypayment page and invoice Summary is present
-    When user enter payment information with credit card
-    And select terms and condition checkbox
-    And click on Confirm order button
-    Then user redirected to payment confirmation page
-    And user verify Order History section
-    When user clicks on an order in the list
-    Then user is able to see order detail section on the screen
-    Then Close browser
+#  @test4 ---- Moved to YMC_purchase history.feature
+#  Scenario: Verify that a list of orders Placed by user is displayed when the user navigates to Order History section
+#    When User clicks on MyProfile link
+#    And User enters emailid
+#    And User enters password
+#    And user click on submit button
+#    When User click on add to cart icon on home page
+#    Then User empty minicart
+#    When User clicks on main Menu Experiences item and select "Drive"
+#    When User navigate to PLP throught experience option for selecting date to Book product
+#    And User select country of issue
+#    And User click on Terms and condition checkbox
+#    And User click on Add to cart Button on select Date Overlay
+#    And Verify user Navigate to Booking Page and Minicart is present
+#    And user verifies the product amount listed on cart
+#    When user click on Check out button of mini cart
+#    Then Verfy User Navigate to Mypayment page and invoice Summary is present
+#    When user enter payment information with credit card
+#    And select terms and condition checkbox
+#    And click on Confirm order button
+#    Then user redirected to payment confirmation page
+#    And user verify Order History section
+#    When user clicks on an order in the list
+#    Then user is able to see order detail section on the screen
+#    Then Close browser
 
- @test5
-  Scenario: Verify that on the order confirmation screen, View Order will be there which will take user to purchase history page.
-    When User clicks on MyProfile link
-    And User enters emailid
-    And User enters password
-    And user click on submit button
-    When User click on add to cart icon on home page
-    Then User empty minicart
-    When User clicks on main Menu Experiences item and select "Drag"
-    When User navigate to PLP throught experience option for selecting date to Book product
-    And User select country of issue
-    And User click on Terms and condition checkbox
-    And User click on Add to cart Button on select Date Overlay
-    And Verify user Navigate to Booking Page and Minicart is present
-    And user verifies the product amount listed on cart
-    When user click on Check out button of mini cart
-    Then Verfy User Navigate to Mypayment page and invoice Summary is present
-    When user enter payment information with credit card
-    And select terms and condition checkbox
-    And click on Confirm order button
-    Then user redirected to payment confirmation page
-    When user clicks on view order on confirmation page
-    Then user will navigate to purchase history page
-    Then Close browser
-
-  @test6
-  Scenario: Verify Dated Product is added in mini cart of booking page and user click on Proceed To Checkout CTA in Mini cart,User will be redirected to Payment Page with Product Summary consisting same
-    When User clicks on main Menu Experiences item and select "Drag"
-    And User click on discover More button
-    And User select country of issue
-    And User click on Terms and condition checkbox
-    And User click on Add to cart Button on select Date Overlay
-    And Verify user Navigate to Booking Page and Minicart is present
-    And user verifies the product amount listed on cart
-    When user click on Check out button of mini cart
-    Then Verfy User Navigate to Mypayment page and invoice Summary is present
-    And User click on proceed to payment Button
-    Then verify user navigate to login page
-    And User enters emailid
-    And User enters password
-    And user click on submit button
-    And verify user Navigate to payment page
-    When user enter payment information with credit card
-    And select terms and condition checkbox
-    And click on Confirm order button
-    Then user redirected to payment confirmation page
-    Then Close browser
-
-  @test7
-  Scenario: Verify that price will be updated if user selects cross sell product (with Video).
-    When User clicks on MyProfile link
-    And User enters emailid
-    And User enters password
-    And user click on submit button
-    When User click on add to cart icon on home page
-    Then User empty minicart
-    Then verify user navigate to my Payment page and click on Buy Experiences button
-    And Verify user Navigate to Booking Page and Minicart is present
-    When User select cross sell product from list
-    Then Verify chose your ticket Overlay should open
-    Then User should select available date and time Slot
-    And User select country of issue
-    And User click on Terms and condition checkbox
-    Then verify price will update if user select cross sell product with video
-    Then Close browser
+# @test5 --- Moved to YMC_purchase history.feature
+#  Scenario: Verify that on the order confirmation screen, View Order will be there which will take user to purchase history page.
+#    When User clicks on MyProfile link
+#    And User enters emailid
+#    And User enters password
+#    And user click on submit button
+#    When User click on add to cart icon on home page
+#    Then User empty minicart
+#    When User clicks on main Menu Experiences item and select "Drag"
+#    When User navigate to PLP throught experience option for selecting date to Book product
+#    And User select country of issue
+#    And User click on Terms and condition checkbox
+#    And User click on Add to cart Button on select Date Overlay
+#    And Verify user Navigate to Booking Page and Minicart is present
+#    And user verifies the product amount listed on cart
+#    When user click on Check out button of mini cart
+#    Then Verfy User Navigate to Mypayment page and invoice Summary is present
+#    When user enter payment information with credit card
+#    And select terms and condition checkbox
+#    And click on Confirm order button
+#    Then user redirected to payment confirmation page
+#    When user clicks on view order on confirmation page
+#    Then user will navigate to purchase history page
+#    Then Close browser
 
 # @test12
 #  Scenario: Verify that on the order confirmation screen, Discount details should be displayed against products if product is eligible for any discount.
@@ -275,29 +234,6 @@ Feature: YMC regression Test cases
 #    Then User navigate back to booking page Mini cart should not have the deleted product in minicart.
 #    Then Close browser
 
-   @test9
-  Scenario: Verify select gift voucher and book product with new user
-    When User click on add to cart icon on home page
-    Then verify user navigate to my Payment page and click on Buy Experiences button
-    And Verify user Navigate to Booking Page and Minicart is present
-    And Verify and select "GIFT VOUCHER" Voucher tab is present on Booking page
-    When User select item in gift vouher list option
-    Then Verify chose your ticket Overlay should open
-    And User click on Terms and condition checkbox
-    And User click on Proceed to checkout Button on select Date Overlay
-    Then Verfy User Navigate to Mypayment page and invoice Summary is present
-    And User click on proceed to payment Button
-    Then verify user navigate to login page
-    Then user click on Sign up option on registration page
-    Then User redirects to registration page
-    When User enter below valid details for registration
-    And YWW User click on submit button for registration
-    And verify user Navigate to payment page
-    When user enter payment information with credit card
-    And select terms and condition checkbox
-    And click on Confirm order button
-    Then user redirected to payment confirmation page
-    Then Close browser
 
 #   @test10
 # ------------merged with Verify that user can delete all the items in product summary section--------
@@ -322,3 +258,60 @@ Feature: YMC regression Test cases
 #    Then verify user navigate to my Payment page and click on Buy Experiences button
 #    Then User navigate back to booking page Mini cart should not have the deleted product in minicart.
 #    Then Close browser
+
+ @test1
+  Scenario: Verify Dated Product is added in mini cart of booking page and user click on Proceed To Checkout CTA in Mini cart,
+            User will be redirected to Payment Page with Product Summary consisting same
+    When User clicks on main Menu Experiences item and select "Drag"
+    And User click on discover More button
+    And User select country of issue
+    And User click on Terms and condition checkbox
+    And User click on Add to cart Button on select Date Overlay
+    And Verify user Navigate to Booking Page and Minicart is present
+    And user verifies the product amount listed on cart
+    When user click on Check out button of mini cart
+    Then Verfy User Navigate to Mypayment page and invoice Summary is present
+    Then Close browser
+
+  @test2
+  Scenario: Verify that price will be updated if user selects cross sell product (with Video).
+    When User clicks on MyProfile link
+    And User enters emailid
+    And User enters password
+    And user click on submit button
+    When User click on add to cart icon on home page
+    Then User empty minicart
+    Then verify user navigate to my Payment page and click on Buy Experiences button
+    And Verify user Navigate to Booking Page and Minicart is present
+    When User select cross sell product from list
+    Then Verify chose your ticket Overlay should open
+    Then User should select available date and time Slot
+    And User select country of issue
+    And User click on Terms and condition checkbox
+    Then verify price will update if user select cross sell product with video
+    Then Close browser
+
+   @test3
+  Scenario: Verify select gift voucher and book product with new user
+    When User click on add to cart icon on home page
+    Then verify user navigate to my Payment page and click on Buy Experiences button
+    And Verify user Navigate to Booking Page and Minicart is present
+    And Verify and select "GIFT VOUCHER" Voucher tab is present on Booking page
+    When User select item in gift vouher list option
+    Then Verify chose your ticket Overlay should open
+    And User click on Terms and condition checkbox
+    And User click on Proceed to checkout Button on select Date Overlay
+    Then Verfy User Navigate to Mypayment page and invoice Summary is present
+    And User click on proceed to payment Button
+    Then verify user navigate to login page
+    Then user click on Sign up option on registration page
+    Then User redirects to registration page
+    When User enter below valid details for registration
+    And YWW User click on submit button for registration
+    And verify user Navigate to payment page
+    When user enter payment information with credit card
+    And select terms and condition checkbox
+    And click on Confirm order button
+    Then user redirected to payment confirmation page
+    Then Close browser
+

@@ -68,8 +68,10 @@ public class Payment_StepDef extends CATSCucumberConfig {
 	
 	
 	@When("select terms and condition checkbox")
-	public void select_terms_and_condition_checkbox() {
-		catsAction.click(CustomRules.locatorPresentInSite(website+".Ticket.T&C",this.ormData));
+	public void select_terms_and_condition_checkbox() throws InterruptedException {
+		catsAction.pageLoadWait();
+		Thread.sleep(10000);
+		catsAction.clickJS(CustomRules.locatorPresentInSite(website+".Ticket.T&C",this.ormData));
 	}
 
 	@And("^click on Pay Now button$")
@@ -82,7 +84,7 @@ public class Payment_StepDef extends CATSCucumberConfig {
 
 	@Then("^user redirected to payment confirmation page$")
 	public void user_redirected_to_payment_confirmation_page() throws Throwable {
-		catsAction.waitUntilElementDisplay(CustomRules.locatorPresentInSite(website+".Payment.ticketConfirmation",this.ormData),"60");
+		catsAction.waitUntilElementDisplay(CustomRules.locatorPresentInSite(website+".Payment.ticketConfirmation",this.ormData),"160");
 		catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Payment.ticketConfirmation",this.ormData));
 		catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Payment.ticket_Booking_id",this.ormData));
 	}
@@ -347,7 +349,7 @@ public class Payment_StepDef extends CATSCucumberConfig {
     @When("^user clicks on view order on confirmation page$")
         public void user_clicks_on_view_order_on_confirmation_page() throws Throwable {
             catsAction.waitUntilElementDisplay(CustomRules.locatorPresentInSite(website+".UserProfile.vieworder",this.ormData),"60");
-            catsAction.click(CustomRules.locatorPresentInSite(website+".UserProfile.vieworder",this.ormData));
+            catsAction.clickJS(CustomRules.locatorPresentInSite(website+".UserProfile.vieworder",this.ormData));
 
 
         }
@@ -358,4 +360,31 @@ public class Payment_StepDef extends CATSCucumberConfig {
             catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".UserProfile.Purchases",this.ormData));
             
         }
+        
+     //mar-2
+        @Then("^user verify confirmation email contains order id$")
+        public void verifyConfirmationEmail() throws Throwable {
+        	catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".MyPayment.Orderid",this.ormData));
+            String orderIDfromconfirmation = getDriver().findElementByXPath(catsVariable.getORM(CustomRules.locatorPresentInSite(website+".MyPayment.Orderid",this.ormData)).getXpath()).getText()
+                    .replaceAll("[^0-9]", "").trim();
+            System.out.println("order ID from confirmation: "+orderIDfromconfirmation);
+            getDriver().navigate().to("https://email.ghostinspector.com/automationymc4/latest");
+            Thread.sleep(15000);
+            String orderIDfromEmail = getDriver().findElementByXPath("//h1[@class='subject']").getText()
+            		.replaceAll("[^0-9]", "").trim();
+            
+            catsAction.verifyVariableValue(orderIDfromconfirmation,orderIDfromEmail);
+            
+            
+            
+            
+            
+        
+            
+        }
+        
+        
+        
+        
+        
         }

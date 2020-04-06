@@ -11,7 +11,7 @@ Feature: User Profile Login and Logout
     And user click on submit button
     Then user verify on My Profile button present under Profile icon is present
     When user logs out
-    Then verify user logout successfully
+    Then verify user logout successfully       
 	Then Close browser
 	
 	 Scenario: Verify that as a already registered Yas Marina Circuit user should not be able to register on the site again
