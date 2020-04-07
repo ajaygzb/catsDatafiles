@@ -88,7 +88,8 @@ public class Login_StepDef extends CATSCucumberConfig {
 	}
 
 	@When("User clicks on MyProfile link")
-	public void User_clicks_on_MyProfile_link() {
+	public void User_clicks_on_MyProfile_link() throws InterruptedException {
+		Thread.sleep(8000);
 		catsAction.click(CustomRules.locatorPresentInSite(website+".Login.Profile",this.ormData));
 		catsAction.pageLoadWait();
 	}
@@ -136,8 +137,6 @@ public class Login_StepDef extends CATSCucumberConfig {
 	{
 		catsAction.click(CustomRules.locatorPresentInSite(website+".Home.ForgotButton",this.ormData));
 	}
-	
-	
 
 	@Then("^User click on logout button$")
 	public void user_click_on_logout_button() throws Throwable  {
@@ -148,14 +147,20 @@ public class Login_StepDef extends CATSCucumberConfig {
 
 	@Then("^Close browser$")
 	public void close_browser(){
-		catsAction.quit();
+		//catsAction.quit();
+		try{
+			getDriver().quit();
+		}catch (Exception e) {
+			System.out.println(e);
+		}
+		
 	}
 
 	@Then("^User Hover and Click on my profile$")
 	public void user_hover_and_click_on_my_profile() throws Throwable {
 
 		catsAction.scrollPageUp();
-		Thread.sleep(5000);
+		Thread.sleep(10000);
 		catsAction.hover(CustomRules.locatorPresentInSite(website + ".Login.Profile",this.ormData));
 		Thread.sleep(1000);
 		catsAction.click(CustomRules.locatorPresentInSite(website+".Login.ProfileLink",this.ormData));
