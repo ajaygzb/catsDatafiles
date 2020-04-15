@@ -3,14 +3,14 @@ Feature: GuestCount Scenarios
 Background: 
 	Given user is on Home Page 
 
-Scenario: 
-	YPS-3962_Verify that for GENERAL ADMISSION tab, maximum count a user can select for a particular ticket is 14 after that counter will be disabled 
-	When User clicks on main Menu Ticket item and select "GENERAL ADMISSION" 
-	Then Verify user navigate to ticket page 
-	When User click on Book Now Button of "Single Day Ticket" Feature 
-	When User Increase the spinner count of Adult and junior if exceed 14 Group booking error message should display 
-	Then Verify Add to cart button is disabled 
-	Then Close browser 
+#Scenario: 
+#	YPS-3962_Verify that for GENERAL ADMISSION tab, maximum count a user can select for a particular ticket is 14 after that counter will be disabled 
+#	When User clicks on main Menu Ticket item and select "GENERAL ADMISSION" 
+#	Then Verify user navigate to ticket page 
+#	When User click on Book Now Button of "Single Day Ticket" Feature 
+#	When User Increase the spinner count of Adult and junior if exceed 14 Group booking error message should display 
+#	Then Verify Add to cart button is disabled 
+#	Then Close browser 
 	
 	
 Scenario: 

@@ -1,4 +1,4 @@
-Feature: Verify that after ticking TnC checkbox of payment method and then updates cart promo code guest form then clicks on pay then all the updated info should come on order confirmation page
+Feature: Validate order confirmation page
 
 Scenario: PayThenAllThe_fill updated_should come on_confirmation page
          Given user is on Home Page   

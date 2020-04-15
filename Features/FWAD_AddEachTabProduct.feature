@@ -14,17 +14,17 @@ Scenario Outline: User add one ticket from each tab
         When User clicks on Annual Passes
 		 Then User select the <AnnualType1> of Annual Pass ticket
 		 Then user add "1" Annual Passes to cart
-         Then user add Annual Pass ticket to cart
+         #Then user add Annual Pass ticket to cart
          When user click on extras tab
          Then Add extras ticket to cart
          When user click on experiences tab 
          Then Add ticket to cart for Experiences or Tour
-         When user click on offers tab 
-         Then User select the Offers ticket  
-		 Then user add "2" Offers Ticket to cart
-         Then user add date and ticket to cart
+         #When user click on offers tab 
+         #Then User select the Offers ticket  
+		 #Then user add "2" Offers Ticket to cart
+         #Then user add date and ticket to cart
           When user click on Check out button on mini cart
-         When user enter payment information with credit card
+        # When user enter payment information with credit card
          And user is able to enter details of guest form 
         When user enter payment information with credit card
 		 And select terms and condition checkbox
@@ -33,7 +33,7 @@ Scenario Outline: User add one ticket from each tab
          Then Close browser
 Examples:
          |day|AnnualType1|MiniCartGiftVoucher|
-         | 0 |Yas Park Annual Pass Gift Voucher|Yas Parks Annual Pass Gift Voucher|
+         | 0 |Annual Pass|Annual Pass|
        
          
          	        

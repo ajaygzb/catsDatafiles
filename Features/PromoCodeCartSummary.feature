@@ -4,7 +4,7 @@ Scenario: Verify PromoCodeCart Summary
           
           Given user is on Home Page   
           When User clicks on Buy Ticket CTA
-         Then User add more junior ticket
+         #Then User add more junior ticket
          When User clicks on Add to Cart button on general pass adult ticket
          When  user click on Check out button on mini cart
          Then user apply PromoCode

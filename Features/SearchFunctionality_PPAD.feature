@@ -13,7 +13,7 @@ Feature: Search Functionality in PPAD
   Scenario: Verify autocomplete search is working on search results page as well
     And User clicks on search icon in header
     When User clicks anywhere in search bar in site
-    Then User should be able to type search "leg" in site
+    Then User should be able to type search "buy" in site
     When User clicks on search icon in header to submit the serach
     #Then User redirects to search results page
     When User clears the search input box in Searach result page

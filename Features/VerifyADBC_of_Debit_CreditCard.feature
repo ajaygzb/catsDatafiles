@@ -1,4 +1,4 @@
-Feature: Verify payment page & selected credit/debit card as payment method when user starts typing ADCB card number and enter 4 digits of the card then user should get a notified that he/she is using a ADCB card
+Feature: Verify payment method when user starts typing ADCB card number and enter four digits get a notified that he she is using a ADCB card
 
 Scenario: non logged VerifyType_of_Debit_CreditCard
           Given user is on Home Page   

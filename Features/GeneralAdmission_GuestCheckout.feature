@@ -13,22 +13,5 @@ Scenario: Verify that user is able to add tickets in cart and checkout with gues
 		 And click on Pay Now button
 		 Then user redirected to payment confirmation page
 		 Then user click on Download ticket button
-    Then Close browser
-    
-    
-   @email 
-   Scenario: Verify that user get confirmation mail once payment is done successfully
-    Given user is on Home Page
-    When User clicks on MyProfile link
-    Then user logs in
-    When User clicks on Buy Ticket CTA
-    When User should see the empty state of the mini cart
-    When User clicks on Add to Cart button on general pass adult ticket
-    When user click on Check out button on mini cart
-    And user verifies the product amount listed on cart page
-    When user enter payment information with credit card
-    And select terms and condition checkbox
-    And click on Pay Now button
-    Then user redirected to payment confirmation page
-    Then user click on Download ticket button
-    Then Close browser
+   	 Then Close browser  
+   	   

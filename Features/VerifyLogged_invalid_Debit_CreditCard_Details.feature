@@ -1,4 +1,4 @@
-Feature: Verify when Logged-in user adds incorrect data in any of the Payfort Card details fields(Card Number, CVV, Expiry) then after clicking Pay user should get error on the payment page 
+Feature: Verify when Loggedin user adds incorrect data in any of the Payfort Card details fields
 
 Scenario: logged user Verify with fill invalid  card details 
             Given user is on Home Page   
