@@ -7,7 +7,7 @@ Feature: Login with Operator and PayPal Payment
     Then B2B User click on SignIn CTA
     When B2B User enter below valid details for login with Operator 
     And B2B User click on submit button for login
-    When B2B User close the notification on Homepage
+ #  When B2B User close the notification on Homepage
     Then B2B User verify dashboard
     And verify dashboard page for "Operator" user
     When B2B User click on Book Ticket CTA
@@ -19,7 +19,7 @@ Feature: Login with Operator and PayPal Payment
     And B2B User checks the terms and conditions checkbox for Paypal
     Then B2B User pay with PayPal
     Then B2B User check the payment confirmation page 
-     Then Close browser
+     #Then Close browser
     
     
     

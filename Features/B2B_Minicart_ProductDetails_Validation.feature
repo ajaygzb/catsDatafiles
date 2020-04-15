@@ -16,7 +16,8 @@ Feature: Login with Partner and Minicart Validation
     And B2B User add single park ticket  
     Then B2B User check minicart is not empty
     Then B2B user verify minicart details 
-    Then B2B user can edit product quantity
-    Then B2B user can delete product quantity
+#    Then B2B user can edit product quantity
+    Then B2B user can edit product quantity for nondated product  
+    Then B2B user can delete product quantity 
     Then B2B User check minicart is empty
     Then Close browser 

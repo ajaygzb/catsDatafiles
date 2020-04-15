@@ -5,12 +5,12 @@ Feature: Login with Agent and Submit for Approval to Operator and Verify it
 
   Scenario: Login with Agent and Submit for approval purchase order and approve the order with operator login
     Then B2B User click on SignIn CTA
-    When B2B User enter below valid details for login with Agent of Operator
+    When B2B User enter below valid details for login with Agent of Operator   
     And B2B User click on submit button for login
     When B2B User close the notification on Homepage
     Then B2B User verify dashboard
     When B2B User click on Book Ticket CTA
-    Then B2B User select dated ticket type
+#    Then B2B User select dated ticket type
     And B2B User add single park ticket  
     And B2B User add Summer Offers Tickets
     Then B2B User check minicart is not empty
@@ -19,7 +19,7 @@ Feature: Login with Agent and Submit for Approval to Operator and Verify it
     And B2B User checks the terms and conditions checkbox for submitting request for approval
     Then B2B User click for payment checkout with Account Credit
     Then B2B User check the payment confirmation page for submit order request
-    When B2B user logs out
+    When B2B user logs out 
     Then B2B User click on SignIn CTA
     When B2B User enter below valid details for login with Operator 
     And B2B User click on submit button for login
@@ -41,8 +41,8 @@ Feature: Login with Agent and Submit for Approval to Operator and Verify it
     When B2B User close the notification on Homepage
     Then B2B User verify dashboard
     When B2B User click on Book Ticket CTA
-    Then B2B User select dated ticket type
-    And B2B User add single park ticket  
+#    Then B2B User select dated ticket type
+    And B2B User add single park ticket   
     Then B2B User check minicart is not empty
     And B2B User click on checkout button 
     Then B2B User add agent reference number

@@ -2,7 +2,7 @@ Feature: YMC regression Test cases
 
   Background: 
     Given user is on Home Page
- 
+
   Scenario: Verify that on the order confirmation screen of a dated Product, following fields should be displayed Order ID
             ,Product Name ,Product Quantity,Date valid also verify order history page with details
     When User clicks on MyProfile link
@@ -34,7 +34,7 @@ Feature: YMC regression Test cases
     Then Close browser
 
 
-
+  @test1
   Scenario: Verify that on the order confirmation screen, View Order will be there which will take user to purchase history page.
     When User clicks on MyProfile link 
     And User enters emailid

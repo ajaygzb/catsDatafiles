@@ -11,11 +11,11 @@ Feature: Login with Partner and Minicart Validation
     Then B2B User verify dashboard
     When B2B User click on Book Ticket CTA
     Then B2B User empty minicart if product were there
-    Then B2B User select dated ticket type
-    And B2B User add single park ticket  
-    Then B2B User check minicart is not empty
-    Then B2B User select Non dated ticket type
-    Then B2B User check minicart is empty
+#    Then B2B User select dated ticket type
+#    And B2B User add single park ticket  
+#    Then B2B User check minicart is not empty
+#    Then B2B User select Non dated ticket type
+#    Then B2B User check minicart is empty
     Then Close browser
 
 Scenario: Login with Partner and check if changing from nondated to dated minicart should empty
@@ -26,9 +26,9 @@ Scenario: Login with Partner and check if changing from nondated to dated minica
     Then B2B User verify dashboard
     When B2B User click on Book Ticket CTA
     Then B2B User empty minicart if product were there
-    Then B2B User select Non dated ticket type
-    And B2B User add single park ticket  
-    Then B2B User check minicart is not empty
-    Then B2B User select dated ticket type
-    Then B2B User check minicart is empty
+#    Then B2B User select Non dated ticket type
+#    And B2B User add single park ticket  
+#    Then B2B User check minicart is not empty
+#    Then B2B User select dated ticket type
+#    Then B2B User check minicart is empty
     Then Close browser
