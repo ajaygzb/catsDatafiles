@@ -67,12 +67,6 @@ public class B2B_UserProfile extends CATSCucumberConfig {
 	   
 	  }
 	    
-	    @When("^B2B User close the notification on Homepage$")
-	    public void b2b_user_close_the_notification_on_homepage() throws Throwable {
-	    	Thread.sleep(2000);
-	    	catsAction.waitUntilElementDisplay(CustomRules.locatorPresentInSite(website+".UserProfile.notificationClose",this.ormData), "20");
-	    	catsAction.clickJS(CustomRules.locatorPresentInSite(website+".UserProfile.notificationClose",this.ormData));
-	    }
 	    
 	    @Then("^B2B User click on SignIn CTA$")
 	    public void b2b_user_click_on_signin_cta() throws Throwable {
@@ -136,7 +130,8 @@ public class B2B_UserProfile extends CATSCucumberConfig {
 	    
 	    @When("^B2B user clicks on My Profile button present under Profile icon$")
 	    public void b2b_user_clicks_on_my_profile_button_present_under_profile_icon() throws Throwable {
-		  Thread.sleep(3000);
+	      catsAction.pageLoadWait();
+		  Thread.sleep(10000);
 		  catsAction.click(CustomRules.locatorPresentInSite(website+".UserProfile.Profile",this.ormData));
 		  catsAction.click(CustomRules.locatorPresentInSite(website+".UserProfile.MyProfile",this.ormData));
 		  catsAction.pageLoadWait();
@@ -179,10 +174,13 @@ public class B2B_UserProfile extends CATSCucumberConfig {
 	    
 	    @When("^B2B User clicks on Change Password tab$")
 	    public void b2b_user_clicks_on_change_password_tab() throws Throwable {
+	    	catsAction.pageLoadWait();
 	    	Thread.sleep(3000);
 	    	catsAction.clickJS(CustomRules.locatorPresentInSite(website+".UserProfile.ChangePasswordLink",this.ormData));
 	    	Thread.sleep(3000);
 	    	catsAction.switchWindowByID("1");
+	    	catsAction.pageLoadWait();
+	    	Thread.sleep(10000);
 	    }
 	    
 	    @When("^B2B User enters new password$")
@@ -270,6 +268,140 @@ public class B2B_UserProfile extends CATSCucumberConfig {
 	    	 catsAction.click(CustomRules.locatorPresentInSite(website+".UserProfile.AddUser",this.ormData));
 	    }
 	    
+	    @And("^verify dashboard page for \"([^\"]*)\" user$")
+	    public void dashboard_page_for_partner_user(String strArg1) throws Throwable {
+	    	
+	    	switch (strArg1){
+	    	
+	    	case("Partner"):
+	    		catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Dasboard.WelcomeMsg",this.ormData));
+	    	catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Dasboard.AccountCreditLimit",this.ormData));
+	    	catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Dasboard.SettleNow",this.ormData));
+	    	//catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Dasboard.Parksupdates",this.ormData));
+	    	//catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Dasboard.ParksOperatingHours",this.ormData));
+	    	catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Dasboard.AVAILABLECREDITS",this.ormData));
+	    	catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Dasboard.Dashboardsummary",this.ormData));
+	    	catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Dasboard.Dashboardsummarycontainer",this.ormData));
+	    	catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Dasboard.Dashboardsummaryrightpanel",this.ormData));
+	    	catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Dasboard.CompanyOrdersGrid",this.ormData));
+	    	catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Dasboard.ApprovedOrderGrid",this.ormData));
+	    	catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Dasboard.DownloadReportGrid",this.ormData));
+	    	catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Dasboard.TopPerformersGrid",this.ormData));
+	    	catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Dasboard.DownloadSalesReport",this.ormData));
+	    	break;
+	    	
+	    	case("Operator"):
+	    	catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Dasboard.WelcomeMsg",this.ormData));
+	    	catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Dasboard.AccountCreditLimit",this.ormData));
+	    	//catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Dasboard.SettleNow",this.ormData));
+	    	//catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Dasboard.Parksupdates",this.ormData));
+	    	//catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Dasboard.ParksOperatingHours",this.ormData));
+	    	catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Dasboard.AVAILABLECREDITS",this.ormData));
+	    	catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Dasboard.Dashboardsummary",this.ormData));
+	    	catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Dasboard.Dashboardsummarycontainer",this.ormData));
+	    	catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Dasboard.Dashboardsummaryrightpanel",this.ormData));
+	    	catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Dasboard.CompanyOrdersGrid",this.ormData));
+	    	catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Dasboard.ApprovedOrderGrid",this.ormData));
+	    	//catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Dasboard.DownloadReportGrid",this.ormData));
+	    	//catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Dasboard.TopPerformersGrid",this.ormData));
+	    	//catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Dasboard.DownloadSalesReport",this.ormData));
+	    		break;
+	    		
+	    	case("Agent"):
+		    	catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Dasboard.WelcomeMsg",this.ormData));
+		    	catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Dasboard.AccountCreditLimit",this.ormData));
+		    	//catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Dasboard.Parksupdates",this.ormData));
+		    	//catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Dasboard.ParksOperatingHours",this.ormData));
+		    	catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Dasboard.AVAILABLECREDITS",this.ormData));
+		    	catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Dasboard.Dashboardsummary",this.ormData));
+		    	catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Dasboard.Dashboardsummarycontainer",this.ormData));
+		    	catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Dasboard.Dashboardsummaryrightpanel",this.ormData));
+		    	catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Dasboard.CompanyOrdersGrid",this.ormData));
+		    	catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Dasboard.ApprovedOrderGrid",this.ormData));
+		    		break;	
+	    		
+	    	default:
+	    		catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Dasboard.WelcomeMsg",this.ormData));
+		    	catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Dasboard.AccountCreditLimit",this.ormData));
+		    	catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Dasboard.SettleNow",this.ormData));
+		    	catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Dasboard.Parksupdates",this.ormData));
+		    	catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Dasboard.ParksOperatingHours",this.ormData));
+		    	catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Dasboard.AVAILABLECREDITS",this.ormData));
+		    	catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Dasboard.Dashboardsummary",this.ormData));
+		    	catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Dasboard.Dashboardsummarycontainer",this.ormData));
+		    	catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Dasboard.Dashboardsummaryrightpanel",this.ormData));
+		    	catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Dasboard.CompanyOrdersGrid",this.ormData));
+		    	catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Dasboard.ApprovedOrderGrid",this.ormData));
+		    	catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Dasboard.DownloadReportGrid",this.ormData));
+		    	catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Dasboard.TopPerformersGrid",this.ormData));
+		    	catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Dasboard.DownloadSalesReport",this.ormData));
+	    	}
+	    }
+	    
+	    @When("^B2B User enters invalid password$")
+	    public void b2b_user_enters_invalid_password() throws Throwable {
+	    	Thread.sleep(3000);
+	    	catsAction.enter(CustomRules.locatorPresentInSite(website+".UserProfile.NewPassword",this.ormData), "$MiralGlobal.NewInvalidPassword.<<site>>");
+	    	catsAction.click(CustomRules.locatorPresentInSite(website+".UserProfile.SaveNewPassword",this.ormData));
+	    	catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".UserProfile.InvalidNewPassword",this.ormData));
+	    	Thread.sleep(2000);
+	    	catsAction.enter(CustomRules.locatorPresentInSite(website+".UserProfile.NewPassword",this.ormData), "$MiralGlobal.NewInvalidPassword2.<<site>>");
+	    	catsAction.click(CustomRules.locatorPresentInSite(website+".UserProfile.SaveNewPassword",this.ormData));
+	    	catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".UserProfile.InvalidNewPassword",this.ormData));
+	    	Thread.sleep(2000);
+	    	catsAction.enter(CustomRules.locatorPresentInSite(website+".UserProfile.NewPassword",this.ormData), "$MiralGlobal.NewInvalidPassword3.<<site>>");
+	    	catsAction.click(CustomRules.locatorPresentInSite(website+".UserProfile.SaveNewPassword",this.ormData));
+	    	catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".UserProfile.InvalidNewPassword",this.ormData));
+		          
+	    }
+	    
+	    @When("^B2B User enters clear all password field$")
+	    public void b2b_user_enters_clear_all_password_field() throws Throwable {
+	    	catsAction.scrollDownByOffset("500");
+	    	Thread.sleep(5000);
+	    	catsAction.clickJS(CustomRules.locatorPresentInSite(website+".UserProfile.SaveNewPassword",this.ormData));
+	    	Thread.sleep(3000);
+	    	catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".UserProfile.InvalidOldPassword",this.ormData));
+	    	catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".UserProfile.InvalidNewPassword",this.ormData));
+	    	catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".UserProfile.InvalidConfirmNewPassword",this.ormData));
+		         
+	    }
+	    
+	    @Then("^B2B user check different type of orders$")
+	    public void b2b_user_check_different_type_of_orders() throws Throwable {
+	    	Thread.sleep(4000);
+			 catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Orders.AllOrders",this.ormData));
+			 catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Orders.ApprovedOrder",this.ormData));
+			 catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Orders.DeclinedOrder",this.ormData));
+			 catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Orders.ArchivedOrder",this.ormData));
+			 catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Orders.PendingOrders",this.ormData));
+	    }
+	    
+	    @When("^B2B User close the notification on Homepage$")
+	    public void b2b_user_close_the_notification_on_homepage() throws Throwable {
+	    	Thread.sleep(3000);
+	    	 
+		     try{
+				   if(getDriver().findElementByXPath(catsVariable.getORM(CustomRules.locatorPresentInSite(website+".UserProfile.notificationClose",this.ormData)).getXpath()) != null)
+				   {
+					   catsAction.clickJS(CustomRules.locatorPresentInSite(website+".UserProfile.notificationClose",this.ormData));
+			          }
+			  }
+			  catch(Exception e)
+	          {
+				  System.out.println("Notification not present");
+				  
+			  }
+
+	    }
+	    
+	    @When("^B2B User enter below valid details for login with Agent of Operator$")
+        public void b2b_user_enter_below_valid_details_for_login_with_agent_of_operator() throws Throwable {
+            Thread.sleep(3000);
+            catsAction.enter(CustomRules.locatorPresentInSite(website+".UserProfile.email",this.ormData), "$MiralGlobal.emailForSignWithAgentwithoutPurchaseRightsOfOperator.<<site>>");
+            catsAction.enter(CustomRules.locatorPresentInSite(website+".UserProfile.Password",this.ormData), "$MiralGlobal.passwordForSignWithAgentwithoutPurchaseRightsOfOperator.<<site>>");
+     
+        }
 	    
 	    
 }

@@ -70,6 +70,7 @@ public class Registration_StepDef extends CATSCucumberConfig {
 		catsAction.pageLoadWait();
 	}
 
+
 	@Then("^by default tab selected is MyProfile$")
 	public void by_default_tab_selected_is_myprofile() throws Throwable {
 		catsAction.getAttributeValue("class", "{{val}}", CustomRules.locatorPresentInSite(website + ".UserProfile.ProfileTab",this.ormData));

@@ -122,9 +122,9 @@ public class Form_StepDef extends CATSCucumberConfig {
 		System.out.println("NoOfPassHolder:"+NoOfPassHolder);
 		Thread.sleep(6000);
 		Thread.sleep(8000);
-		catsAction.scrollDownByOffset("300");
+		//catsAction.scrollDownByOffset("300");
 		Thread.sleep(2000);
-		catsAction.scrollDownByOffset("300");
+		//catsAction.scrollDownByOffset("300");
 		//catsAction.clickJS(CustomRules.locatorPresentInSite(website+".GuestCheckout.MainPassHolderContact",this.ormData));
 		//         catsAction.scrollIntoView(CustomRules.locatorPresentInSite(website+".GuestCheckout.passHolderClose",this.ormData));
 		//    catsAction.click(CustomRules.locatorPresentInSite(website+".GuestCheckout.passHolderClose",this.ormData));

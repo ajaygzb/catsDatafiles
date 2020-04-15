@@ -2,7 +2,10 @@ package cats.selenium.bdd.stepdef;
 
 import com.sapient.qa.cats.core.framework.CATSCucumberConfig;
 import java.io.IOException;
+import java.util.List;
 import java.util.Set;
+
+import org.openqa.selenium.WebElement;
 
 import cucumber.api.Scenario;
 import cucumber.api.java.en.And;
@@ -64,8 +67,39 @@ public class HotelBookingWidget_StepDef  extends CATSCucumberConfig{
 	  @When("^User select checkin and checkout date$")
 	    public void user_select_checkin_and_checkout_date() throws Throwable {
 		    catsAction.click(CustomRules.locatorPresentInSite(website+".CheckIn.DatePicker",this.ormData));
-			catsAction.click(CustomRules.locatorPresentInSite(website+".CheckIn.select",this.ormData));
-			catsAction.click(CustomRules.locatorPresentInSite(website+".CheckIn.select1",this.ormData));
+		    
+		    List<WebElement> calDate=getDriver().findElementsByXPath("//*[@class='react-datepicker__week']/div");
+		    System.out.println("List Size:::::"+calDate.size());
+		    WebElement firstDate=null;
+		    WebElement SecondDate=null;
+		    int counter = 0;
+		    for(WebElement ele : calDate){
+		    	
+		    	System.out.println(ele.getAttribute("class"));
+		    	if(!ele.getAttribute("class").contains("disabled") && firstDate==null){
+		    		counter++;
+		    		firstDate=ele;
+		    		continue;
+		    		
+		    		
+		    	} else if(counter==1 && !firstDate.equals(null) && !ele.getAttribute("class").contains("disabled")){
+		    		SecondDate=ele;
+		    	}else{
+		    		counter=0;
+		    		firstDate=null;
+		 		    SecondDate=null;
+		    	}
+		    	
+		    	if(firstDate!=null && SecondDate!=null){
+		    		break;
+		    	}
+		    	
+		    }
+		    firstDate.click();
+		    SecondDate.click();
+		    
+			//catsAction.click(CustomRules.locatorPresentInSite(website+".CheckIn.select",this.ormData));
+			//catsAction.click(CustomRules.locatorPresentInSite(website+".CheckIn.select1",this.ormData));
 			
 		    dateSelected= getDriver().findElementByXPath(catsVariable.getORM(CustomRules.locatorPresentInSite(website+".Hotel_Booking.storeSelectedDate",this.ormData)).getXpath()).getText();
 	        System.out.println("dateSelected: "+dateSelected);
@@ -144,7 +178,7 @@ public class HotelBookingWidget_StepDef  extends CATSCucumberConfig{
 	    
 	    @And("^user is redirected to Package page and verify information$")
 	    public void user_is_redirected_to_package_page_and_verify_information() throws Throwable {
-	    	Thread.sleep(4000);
+	    	Thread.sleep(15000);
 	    	catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Hotel_Booking.brandLogo",this.ormData));
 	    	
 	    	String[] separateDate = dateSelected.split("-", 2); 

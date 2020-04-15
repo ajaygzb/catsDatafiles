@@ -96,7 +96,7 @@ public class YMC_StepDef extends CATSCucumberConfig {
 				Thread.sleep(3000);
 		  }
 		  
-		  @Then("^verify user logout successfully$")
+		   @Then("^verify user logout successfully$")
 		    public void verify_user_logout_successfully() throws Throwable {
 			   catsAction.pageLoadWait();
 			   Thread.sleep(10000);
@@ -213,8 +213,7 @@ public class YMC_StepDef extends CATSCucumberConfig {
               Thread.sleep(2000);	
               catsAction.clickJS(CustomRules.locatorPresentInSite(website+".Header.HandF",this.ormData));
               Thread.sleep(5000);	
-            //  catsAction.clickJS(CustomRules.locatorPresentInSite(website+".Header.HandFtiles",this.ormData));
-
+              //catsAction.clickJS(CustomRules.locatorPresentInSite(website+".Header.HandFtiles",this.ormData));
               }
               @Then("^User click on Register now$")
               public void user_click_on_register_now() throws Throwable 
@@ -286,13 +285,13 @@ public class YMC_StepDef extends CATSCucumberConfig {
                Thread.sleep(4000);
               catsAction.clickJS(CustomRules.locatorPresentInSite(website+".Registration.YasConferenceCenter",this.ormData));
               Thread.sleep(4000);
-              catsAction.pageLoadWait();
+			  catsAction.pageLoadWait();
               catsAction.clickJS(CustomRules.locatorPresentInSite(website+".Registration.Quote",this.ormData));
               }
               @Then("^user fill quote form$")
               public void user_fill_quote_form() throws Throwable 
-              {   
-            	  catsAction.pageLoadWait();
+              {
+                  catsAction.pageLoadWait();
                   Thread.sleep(10000);
                   catsAction.selectElementByValue(CustomRules.locatorPresentInSite(website+".Registration.NumberOfAttentend",this.ormData), "empty-key1");
                  Thread.sleep(2000);

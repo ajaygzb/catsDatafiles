@@ -1,5 +1,14 @@
 package cats.selenium.bdd.stepdef;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.List;
+import java.util.Properties;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
 import com.sapient.qa.cats.core.framework.CATSCucumberConfig;
 
 
@@ -8,7 +17,9 @@ import cucumber.api.java.AfterStep;
 import cucumber.api.java.Before;
 import cucumber.api.java.BeforeStep;
 import cucumber.api.java.en.And;
+import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 
 public class Contaactus_Validation extends CATSCucumberConfig {
 
@@ -115,7 +126,8 @@ public class Contaactus_Validation extends CATSCucumberConfig {
 
 	@Then("^user fill  contact us form$")
 	public void user_fill_contact_us_form() throws Throwable {
-        catsAction.pageLoadWait();
+
+		catsAction.pageLoadWait();
         Thread.sleep(10000);
 		catsAction.enter(CustomRules.locatorPresentInSite(website+".Contactuserror.FirstName",this.ormData), "$MiralGlobal.NameForGuestForm.<<site>>");
 		Thread.sleep(2000);

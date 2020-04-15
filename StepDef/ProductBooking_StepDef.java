@@ -101,10 +101,10 @@ public class ProductBooking_StepDef extends CATSCucumberConfig {
 	@When("User clicks on Add to Cart button on general pass adult ticket")
 	public void User_clicks_on_Add_to_Cart_button_on_general_pass_adult_ticket() throws Throwable {
 		// Write code here that turns the phrase above into concrete actions
-		if(website.equalsIgnoreCase("WBW")){
+		/*if(website.equalsIgnoreCase("WBW")){
 			user_pick_a_date();
-		}
-		Thread.sleep(3000);
+		}*/
+		Thread.sleep(10000);
 		catsAction.waitUntilElementDisplay(CustomRules.locatorPresentInSite(website+".Ticket.AddToCart",this.ormData), "30");
 		Thread.sleep(5000);
 		catsAction.clickJS(CustomRules.locatorPresentInSite(website+".Ticket.AddToCart",this.ormData));
@@ -126,7 +126,11 @@ public class ProductBooking_StepDef extends CATSCucumberConfig {
 
 	}
 
-	
+	@When("user click on Check out button on mini cart")
+	public void user_click_on_Check_out_button_on_mini_cart() throws InterruptedException {
+		Thread.sleep(4000);
+		catsAction.clickJS(CustomRules.locatorPresentInSite(website+".Ticket.CheckOut",this.ormData));
+	}
 
 	@Then("user verifies the product amount listed on cart page")
 	public void user_verifies_the_product_amount_listed_on_cart_page() {
@@ -139,7 +143,6 @@ public class ProductBooking_StepDef extends CATSCucumberConfig {
 		// Write code here that turns the phrase above into concrete actions
 		//	 	catsAction.scrollIntoView(website+".Ticket.AnnualPasses");
 		catsAction.scrollPageUp();
-		Thread.sleep(2000);
 		catsAction.waitUntilElementDisplay(CustomRules.locatorPresentInSite(website+".Ticket.AnnualPasses",this.ormData), "30");
 		Thread.sleep(4000);
 		catsAction.click(CustomRules.locatorPresentInSite(website+".Ticket.AnnualPasses",this.ormData));
@@ -170,6 +173,14 @@ public class ProductBooking_StepDef extends CATSCucumberConfig {
 		catsAction.click(CustomRules.locatorPresentInSite(website+".CheckIn.AddToCart",this.ormData));
 		break;
 
+		case("YWW"):
+			catsAction.click(CustomRules.locatorPresentInSite(website+".CheckIn.selectcart",this.ormData));
+		catsAction.click(CustomRules.locatorPresentInSite(website+".CheckIn.date",this.ormData)); 
+		Thread.sleep(5000);
+		catsAction.click(CustomRules.locatorPresentInSite(website+".CheckIn.Add",this.ormData));
+		catsAction.click(CustomRules.locatorPresentInSite(website+".CheckIn.AddToCart",this.ormData));
+		break;
+		
 		default:
 			catsAction.click(CustomRules.locatorPresentInSite(website+".CheckIn.AddToCart",this.ormData));
 			break;
@@ -436,7 +447,6 @@ public class ProductBooking_StepDef extends CATSCucumberConfig {
 	@Then("^User click on grid expand button$")
 	public void user_click_on_grid_expand_button() throws Throwable 
 	{
-		Thread.sleep(10000);
 		catsAction.click(CustomRules.locatorPresentInSite(website+".Payment.GridExpandBtn",this.ormData));
 
 	}
@@ -871,7 +881,6 @@ public class ProductBooking_StepDef extends CATSCucumberConfig {
 	@And("^user is able getting promo discount$")
 	public void user_is_able_getting_promo_discount() throws Throwable 
 	{
-		Thread.sleep(5000);
 		catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Ticket.Discount",this.ormData));
 
 	}
@@ -879,13 +888,9 @@ public class ProductBooking_StepDef extends CATSCucumberConfig {
 	public void user_apply_adbcpromocode() throws Throwable 
 	{
 		catsAction.waitUntilElementDisplay(CustomRules.locatorPresentInSite(website+".Ticket.EnterPromoCode",this.ormData),"30");
-		Thread.sleep(2000);
-
 		catsAction.click(CustomRules.locatorPresentInSite(website+".Ticket.EnterPromoCode",this.ormData));
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 		catsAction.enter(CustomRules.locatorPresentInSite(website+".Ticket.coupon",this.ormData), "$MiralGlobal.ADCB_Coupon.<<site>>");
-		Thread.sleep(2000);
-
 		catsAction.click(CustomRules.locatorPresentInSite(website+".Ticket.Apply",this.ormData));
 		Thread.sleep(3000);
 
@@ -1133,20 +1138,6 @@ public class ProductBooking_StepDef extends CATSCucumberConfig {
 		catsAction.click(CustomRules.locatorPresentInSite(website+".Offers.select",this.ormData));
 
 		catsAction.click(CustomRules.locatorPresentInSite(website+".Offers.AddToCart",this.ormData));
-	}
-	@When("User navigate back to booking page Mini cart should not have the deleted product in minicart.")
-	public void Mini_cart_should_not_have_the_deleted_product() throws InterruptedException {
-	//	catsAction.navigateBack();
-		catsAction.pageLoadWait();
-		Thread.sleep(5000);
-		catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Ticket.EmptyCart",this.ormData));
-	}
-	
-	@When("user click on Check out button on mini cart")
-	public void user_click_on_Check_out_button_on_mini_cart() {
-	    // Write code here that turns the phrase above into concrete actions
-		catsAction.action("Move", "SKMouseMove", "", "", "", "", "", "", "");
-		catsAction.click(website+".Ticket.CheckOut");
 	}
 
 

@@ -72,17 +72,7 @@ public class B2B_Payment extends CATSCucumberConfig {
 		     Thread.sleep(4000);
 	  }
 	  
-	  @Then("^B2B User select dated ticket type$")
-	    public void b2b_user_select_dated_ticket_type() throws Throwable {
-		    catsAction.click(CustomRules.locatorPresentInSite(website+".Payment.DatedTicket",this.ormData));
-		    Thread.sleep(4000);
-	  }
 	  
-	  @Then("^B2B User select Non dated ticket type$")
-	    public void b2b_user_select_non_dated_ticket_type() throws Throwable {
-		  catsAction.click(CustomRules.locatorPresentInSite(website+".Payment.NonDatedTicket",this.ormData));
-		    Thread.sleep(3000);
-	  }
 	  
 	  @And("^B2B User add single park ticket$")
 	    public void b2b_user_add_single_park_ticket() throws Throwable {
@@ -100,6 +90,7 @@ public class B2B_Payment extends CATSCucumberConfig {
 		  catch(Exception e)
           {
 			  System.out.println("Calender Overlay ticket is not present");
+			  Thread.sleep(3000);
 			  catsAction.click(CustomRules.locatorPresentInSite(website+".Payment.IncreaseTicket",this.ormData));
 			  catsAction.click(CustomRules.locatorPresentInSite(website+".Payment.AddToCart",this.ormData));
 			  Thread.sleep(3000);
@@ -142,7 +133,8 @@ public class B2B_Payment extends CATSCucumberConfig {
 	  @And("^B2B User add MultiPark ticket$")
 	    public void b2b_user_add_multipark_ticket() throws Throwable {
 		  catsAction.click(CustomRules.locatorPresentInSite(website+".Payment.MultiPark",this.ormData));
-		  Thread.sleep(3000);
+		  catsAction.pageLoadWait();
+		  Thread.sleep(10000);
 		  catsAction.click(CustomRules.locatorPresentInSite(website+".Payment.FWADcheckbox",this.ormData));
 		  catsAction.click(CustomRules.locatorPresentInSite(website+".Payment.YWWcheckbox",this.ormData));
 		  Thread.sleep(2000);
@@ -150,12 +142,6 @@ public class B2B_Payment extends CATSCucumberConfig {
 		  catsAction.click(CustomRules.locatorPresentInSite(website+".Payment.AddToCart",this.ormData));
 		  Thread.sleep(4000);
 	  }
-	  
-	  @Then("^B2B User check minicart is not empty$")
-	    public void b2b_user_check_minicart_is_not_empty() throws Throwable {
-		  catsAction.click(CustomRules.locatorPresentInSite(website+".Payment.checkMinicartPrice",this.ormData));
-	  }
-	  
 	  @And("^B2B User click on checkout button$")
 	    public void b2b_user_click_on_checkout_button() throws Throwable {
 		  catsAction.click(CustomRules.locatorPresentInSite(website+".Payment.checkout",this.ormData));
@@ -165,11 +151,12 @@ public class B2B_Payment extends CATSCucumberConfig {
 	  @Then("^B2B User add agent reference number$")
 	    public void b2b_user_add_agent_reference_number() throws Throwable {
 		  catsAction.enter(CustomRules.locatorPresentInSite(website+".Payment.agentNumber",this.ormData), "$MiralGlobal.agentNumberOnPaymentPage.<<site>>");
-	    	
+	      Thread.sleep(4000);
 	  }
 	  
 	  @Then("^B2B User fill credit card detail$")
 	    public void b2b_user_fill_credit_card_detail() throws Throwable {
+		  Thread.sleep(3000);
 		  catsAction.enterAppend(CustomRules.locatorPresentInSite(website+".Payment.creditCardNumber",this.ormData), "$MiralGlobal.CardNumberForCardPayment.<<site>>");
 		  	
 		  	catsAction.enter(CustomRules.locatorPresentInSite(website+".Payment.creditCardExpiry",this.ormData), "$MiralGlobal.ExpDateForCardPayment.<<site>>");
@@ -180,19 +167,21 @@ public class B2B_Payment extends CATSCucumberConfig {
 	  
 	  @And("^B2B User checks the terms and conditions checkbox for Paypal$")
 	    public void b2b_user_checks_the_terms_and_conditions_checkbox_for_paypal() throws Throwable {
-		  catsAction.scrollDownByOffset("1900");
-		  Thread.sleep(3000);
-		  catsAction.click(CustomRules.locatorPresentInSite(website+".Payment.paypalButton",this.ormData));
-	         Thread.sleep(6000);
-          catsAction.click(CustomRules.locatorPresentInSite(website+".Payment.T&CforPaypal",this.ormData));
-          Thread.sleep(3000);
+		    catsAction.scrollDownByOffset("600");
+			Thread.sleep(4000);
+			catsAction.clickJS(CustomRules.locatorPresentInSite(website+".Payment.paypalButton",this.ormData));
+			Thread.sleep(12000);
+			catsAction.scrollDownByOffset("200");
+			catsAction.clickJS(CustomRules.locatorPresentInSite(website+".Payment.T&CforPaypal",this.ormData));
+			catsAction.scrollDownByOffset("200");
+			Thread.sleep(4000);
 	  }
 	  
 	  @And("^B2B User checks the terms and conditions checkbox for Account Credit Payment$")
 	    public void b2b_user_checks_the_terms_and_conditions_checkbox_for_account_credit_payment() throws Throwable {
-		  catsAction.scrollDownByOffset("1950");
+		  catsAction.scrollDownByOffset("1550");
 		  Thread.sleep(3000);
-		  catsAction.click(CustomRules.locatorPresentInSite(website+".Payment.AccountCreditButton",this.ormData));
+		  catsAction.clickJS(CustomRules.locatorPresentInSite(website+".Payment.AccountCreditButton",this.ormData));
 	         Thread.sleep(6000);
           catsAction.clickJS(CustomRules.locatorPresentInSite(website+".Payment.T&CforAccountCredit",this.ormData));
           Thread.sleep(2000);
@@ -208,20 +197,26 @@ public class B2B_Payment extends CATSCucumberConfig {
 	  
 	  @Then("^B2B User pay with PayPal$")
 	    public void b2b_user_pay_with_paypal() throws Throwable {
-		  catsAction.click(CustomRules.locatorPresentInSite(website+".Payment.paypalProceed",this.ormData));
-	    	Thread.sleep(2000);
-	    	catsAction.switchWindowByID("1");
-	    	catsAction.waitUntilElementDisplay(CustomRules.locatorPresentInSite(website+".Payment.EmailId",this.ormData),"10");
-	    	catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Payment.EmailId",this.ormData));
-	    	catsAction.enter(CustomRules.locatorPresentInSite(website+".Payment.EmailId",this.ormData),"$MiralGlobal.EmailForPayPal.<<site>>");
-	    	catsAction.click(CustomRules.locatorPresentInSite(website+".Payment.BtnNext",this.ormData));
-	    	catsAction.waitUntilElementDisplay(CustomRules.locatorPresentInSite(website+".Payment.Password",this.ormData),"20");
-	    	catsAction.enter(CustomRules.locatorPresentInSite(website+".Payment.Password",this.ormData), "$MiralGlobal.PasswordForPayPal.<<site>>");
-	    	catsAction.click(CustomRules.locatorPresentInSite(website+".Payment.Login",this.ormData));
-	    	catsAction.waitUntilElementDisplay(CustomRules.locatorPresentInSite(website+".Payment.continueOnPaypal",this.ormData),"10");
-	    	catsAction.click(CustomRules.locatorPresentInSite(website+".Payment.continueOnPaypal",this.ormData));
-	    	catsAction.switchWindowByID("0");
-	    	Thread.sleep(2000);
+		    catsAction.scrollPageDown();
+		    Thread.sleep(30000);
+			//catsAction.waitUntilElementDisplay(CustomRules.locatorPresentInSite(website+".Payment.paypalProceed",this.ormData),"60");
+			Thread.sleep(2000);
+			catsAction.click(CustomRules.locatorPresentInSite(website+".Payment.paypalProceed",this.ormData));
+			Thread.sleep(30000);
+			catsAction.switchWindowByID("1");
+			catsAction.waitUntilElementDisplay(CustomRules.locatorPresentInSite(website+".Payment.EmailId",this.ormData),"5");
+			catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Payment.EmailId",this.ormData));
+			catsAction.enter(CustomRules.locatorPresentInSite(website+".Payment.EmailId",this.ormData),"$MiralGlobal.EmailForPayPal.<<site>>");
+			catsAction.clickJS(CustomRules.locatorPresentInSite(website+".Payment.BtnNext",this.ormData));
+			catsAction.waitUntilElementDisplay(CustomRules.locatorPresentInSite(website+".Payment.Password",this.ormData),"20");
+			catsAction.enter(CustomRules.locatorPresentInSite(website+".Payment.Password",this.ormData), "$MiralGlobal.PasswordForPayPal.<<site>>");
+			catsAction.clickJS(CustomRules.locatorPresentInSite(website+".Payment.Login",this.ormData));
+			Thread.sleep(15000);
+			catsAction.scrollPageDown();
+			catsAction.waitUntilElementDisplay(CustomRules.locatorPresentInSite(website+".Payment.continueOnPaypal",this.ormData),"20");
+			catsAction.click(CustomRules.locatorPresentInSite(website+".Payment.continueOnPaypal",this.ormData));
+			catsAction.switchWindowByID("0");
+			Thread.sleep(2000);
 	  }
 	  
 	  @And("^B2B User checks the terms and conditions checkbox$")
@@ -242,10 +237,96 @@ public class B2B_Payment extends CATSCucumberConfig {
 	  
 	  @Then("^B2B User check the payment confirmation page$")
 	    public void b2b_user_check_the_payment_confirmation_page() throws Throwable {
-		  catsAction.waitUntilElementDisplay(CustomRules.locatorPresentInSite(website+".Payment.ticketConfirmation",this.ormData),"50");
+		  catsAction.waitUntilElementDisplay(CustomRules.locatorPresentInSite(website+".Payment.ticketConfirmation",this.ormData),"90");
 			catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Payment.ticketConfirmation",this.ormData));
 			catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Payment.ticket_Booking_id",this.ormData));
 	  }
+	  
+	  @And("^B2B User add VIP Packages Tickets$")
+	    public void b2b_user_add_VIP_Packages_tickets() throws Throwable {
+		  catsAction.waitUntilElementDisplay(CustomRules.locatorPresentInSite(website+".Payment.VIPPackages",this.ormData),"60");
+		  catsAction.click(CustomRules.locatorPresentInSite(website+".Payment.VIPPackages",this.ormData));
+		  Thread.sleep(8000);
+		  
+		  try{
+			  if(getDriver().findElementByXPath(catsVariable.getORM(CustomRules.locatorPresentInSite(website+".Payment.SelectDateCTA",this.ormData)).getXpath()) != null)
+			   {
+		             catsAction.click(CustomRules.locatorPresentInSite(website+".Payment.SelectDateCTA",this.ormData));
+		             catsAction.click(CustomRules.locatorPresentInSite(website+".Payment.SelectDateCalender",this.ormData));
+		             Thread.sleep(6000);
+		        	 catsAction.click(CustomRules.locatorPresentInSite(website+".Payment.TimeslotDropDown",this.ormData));
+		        	 Thread.sleep(6000);
+		        	 catsAction.click(CustomRules.locatorPresentInSite(website+".Payment.Timeslotvalue",this.ormData));
+		        	 Thread.sleep(6000);
+		        	 catsAction.click(CustomRules.locatorPresentInSite(website+".Payment.CountryDropdown",this.ormData));
+		        	 Thread.sleep(6000);
+		        	 catsAction.click(CustomRules.locatorPresentInSite(website+".Payment.CountryDropdownValue",this.ormData));
+		        	 Thread.sleep(6000);
+	            	 catsAction.click(CustomRules.locatorPresentInSite(website+".Payment.Passengercount",this.ormData));
+		             catsAction.click(CustomRules.locatorPresentInSite(website+".Payment.AddToCart",this.ormData));
+		             Thread.sleep(3000);
+		          }
+		  }
+		  catch(Exception e)
+     {
+			  System.out.println("Calender Overlay ticket is not present");
+			  //catsAction.click(CustomRules.locatorPresentInSite(website+".Payment.IncreaseTicket",this.ormData));
+			  catsAction.click(CustomRules.locatorPresentInSite(website+".Payment.AddToCart",this.ormData));
+			  Thread.sleep(3000);
+		  }
+	  }
+	
+	  
+	  @Then("^B2B User check minicart is not empty$")
+	    public void b2b_user_check_minicart_is_not_empty() throws Throwable {
+		  Thread.sleep(3000);
+		  catsAction.verifyElementNotPresent(CustomRules.locatorPresentInSite(website+".MiniCart.EmptyCart",this.ormData));
+	  }
+	  
+	  @Then("^B2B User check minicart is empty$")
+	    public void b2b_user_check_minicart_is_empty() throws Throwable {
+		  Thread.sleep(3000);
+		  catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".MiniCart.EmptyCart",this.ormData));
+	  
+	  }
+	  
+	  @Then("^B2B User select Non dated ticket type$")
+	    public void b2b_user_select_non_dated_ticket_type() throws Throwable {
+		  Thread.sleep(3000);
+		  catsAction.scrollPageUp();
+		  catsAction.clickJS(CustomRules.locatorPresentInSite(website+".Payment.NonDatedTicket",this.ormData));
+		    Thread.sleep(3000);
+	  }
+	  
+	  @Then("^B2B User select dated ticket type$")
+	    public void b2b_user_select_dated_ticket_type() throws Throwable {
+		  Thread.sleep(3000);
+		  catsAction.scrollPageUp();
+		  catsAction.clickJS(CustomRules.locatorPresentInSite(website+".Payment.DatedTicket",this.ormData));
+		    Thread.sleep(4000);
+	  }
+	  
+	  @Then("^B2B User empty minicart if product were there$")
+	    public void b2b_user_empty_minicart_if_product_were_there() throws Throwable {
+		  Thread.sleep(4000);
+		try{
+			if(getDriver().findElementByXPath(catsVariable.getORM(CustomRules.locatorPresentInSite(website+".MiniCart.EmptyCart",this.ormData)).getXpath()).isDisplayed())
+			{  
+			  System.out.println("Minicart is already empty");
+		   }
+				   
+			}catch(Exception e)
+			{
+				    Thread.sleep(2000);
+					catsAction.clickJS(CustomRules.locatorPresentInSite(website+".MiniCart.ClearAll",this.ormData));
+					Thread.sleep(2000);
+					catsAction.click(CustomRules.locatorPresentInSite(website+".MiniCart.ConfirmClearAll",this.ormData));
+				
+			}
+	        
+			Thread.sleep(3000);
+	  }
+	  
 	  
 	 
 }

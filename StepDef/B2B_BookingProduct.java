@@ -28,6 +28,7 @@ public class B2B_BookingProduct extends CATSCucumberConfig {
 	public String website;
 	public String bookingID;
 	public ExcelReader ormData;
+	public String NoOfProduct;
 	
 	@Before()
 	  public void launch(Scenario scenario) {
@@ -95,7 +96,8 @@ public class B2B_BookingProduct extends CATSCucumberConfig {
 	  
 	  @Then("^B2B User checks the status of pending order$")
 	    public void b2b_user_checks_the_status_of_pending_order() throws Throwable {
-		  Thread.sleep(3000);
+		  catsAction.pageLoadWait();
+		  Thread.sleep(10000);
 	//	  bookingID="FEX.WKS3.200203.SAL19";
 		  System.out.println("in booking id.................");
 		 System.out.println("bookingID: "+bookingID);
@@ -138,6 +140,57 @@ public class B2B_BookingProduct extends CATSCucumberConfig {
 				}
 				
 			}
+	  }
+	  
+	  @Then("^B2B user verify minicart details$")
+	    public void b2b_user_verify_minicart_details() throws Throwable {
+		  Thread.sleep(3000);
+		  catsAction.click(CustomRules.locatorPresentInSite(website+".MiniCart.Expand",this.ormData));
+		  Thread.sleep(2000);
+		  catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".MiniCart.Heading",this.ormData));
+		  //catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".MiniCart.Date",this.ormData));
+		  //catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".MiniCart.Time",this.ormData));
+		  catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".MiniCart.CartSubTotal",this.ormData));
+		  catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".MiniCart.CartTotal",this.ormData));
+		  catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".MiniCart.NetPrice",this.ormData));
+	  }
+	  
+	  @Then("^B2B user can edit product quantity$")
+	    public void b2b_user_can_edit_product_quantity() throws Throwable {
+		  Thread.sleep(2000);
+		  catsAction.click(CustomRules.locatorPresentInSite(website+".MiniCart.editLink",this.ormData));
+		  Thread.sleep(2000);
+	  }
+	  
+	  @Then("^B2B user can delete product quantity$")
+	    public void b2b_user_can_delete_product_quantity() throws Throwable {
+		  Thread.sleep(4000);
+		  catsAction.click(CustomRules.locatorPresentInSite(website+".MiniCart.DeleteProduct",this.ormData));
+		  catsAction.click(CustomRules.locatorPresentInSite(website+".MiniCart.ConfirmButton",this.ormData));
+		  Thread.sleep(3000);
+		  
+	  }
+	  
+	  @Then("^B2B user can edit product quantity for nondated product$")
+	    public void b2b_user_can_edit_product_quantity_for_nondated_product() throws Throwable {
+		  NoOfProduct = getDriver().findElementByXPath(catsVariable.getORM(CustomRules.locatorPresentInSite(website+".MiniCart.ProductCount",this.ormData)).getXpath()).getAttribute("value");
+		  System.out.println("NoOfProduct: "+NoOfProduct);
+		  int product= Integer.parseInt(NoOfProduct);
+		    while(product<2)
+		    {
+		    	catsAction.click(CustomRules.locatorPresentInSite(website+".MiniCart.ProductIncrease",this.ormData));
+		    	product++;
+		    }
+   	catsAction.verifyAttributeValue(CustomRules.locatorPresentInSite(website+".MiniCart.ProductCount",this.ormData), "value", "2");
+	
+			Thread.sleep(2000);
+			while(product>1)
+		    {
+		    	catsAction.click(CustomRules.locatorPresentInSite(website+".MiniCart.ProductDecrease",this.ormData));
+		    	product--;
+		    }
+			catsAction.verifyAttributeValue(CustomRules.locatorPresentInSite(website+".MiniCart.ProductCount",this.ormData), "value", "1");
+			
 	  }
 	  
 	  

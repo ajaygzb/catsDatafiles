@@ -1,15 +1,14 @@
-
 package cats.selenium.bdd.stepdef;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+
+
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.sapient.qa.cats.core.framework.CATSCucumberConfig;
@@ -88,9 +87,7 @@ public class PLP extends CATSCucumberConfig{
 				System.out.println("Slot available" +m);
 				catsAction.clickJS(CustomRules.locatorPresentInSite(website + ".BookNowOverlay.availabledate",this.ormData));
 				catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".BookNowOverlay.PreferredtimeSlots",this.ormData));
-				Thread.sleep(3000);
 				catsAction.clickJS(CustomRules.locatorPresentInSite(website+".BookNowOverlay.PreferredtimeSlots",this.ormData));
-				Thread.sleep(3000);
 				catsAction.clickJS(CustomRules.locatorPresentInSite(website+".BookNowOverlay.PreferredtimeSlotsOption",this.ormData));
 				flag = true ;
 				break;
@@ -110,7 +107,7 @@ public class PLP extends CATSCucumberConfig{
 	//----------------------------------Book Now button--------------------------------------------------------------------------------
 	public void clickBookNowButtonOfGivenFeature(String featureName) throws Throwable {
 
-       
+
 		String featureLabelNameListPath =catsVariable.getORM(website + ".HomePage.FeatureLabelNameListPath").getXpath();
 		System.out.println("featureLabelNameListPath........."+featureLabelNameListPath);
 		List<WebElement> FeatureLabelName = getDriver().findElements(By.xpath(featureLabelNameListPath));
@@ -126,13 +123,12 @@ public class PLP extends CATSCucumberConfig{
 			if(FeatureLabelName.get(k).getText().equalsIgnoreCase(featureName))
 			{
 				System.out.println("Inside if");
-				
 				Thread.sleep(10000);
 				catsAction.click("(//div[@class='buy-ticket-cta']/button)["+(k+1)+"]");
-
+				
 				break;
 			}
-
+			
 		} 
 
 	}
@@ -157,54 +153,9 @@ public class PLP extends CATSCucumberConfig{
 				break;
 			}
 		} 
-	}
-
-	/* @And("^user apply PromoCode in Mini cart$")
-		    public void user_apply_PromoCode_in_Mini_cart() throws Throwable {
-			    catsAction.waitUntilElementDisplay(CustomRules.locatorPresentInSite(website+".Ticket.EnterPromoCode",this.ormData),"30");
-			    Thread.sleep(2000);
-			    catsAction.click(CustomRules.locatorPresentInSite(website+".Ticket.EnterPromoCode",this.ormData));
-				Thread.sleep(2000);
-				catsAction.enter(CustomRules.locatorPresentInSite(website+".Ticket.EnterPromoCode",this.ormData), "$MiralGlobal.Coupon.<<site>>");
-				catsAction.click(CustomRules.locatorPresentInSite(website+".Ticket.Apply",this.ormData));
-				Thread.sleep(3000);
-		    }*/
-
-	/*   @And("^Verify Promo Code details on Payment page$")
-	    public void Verify_Promo_Code_details_on_Payment_page() throws Throwable {
-	    	Thread.sleep(3000);
-	    	catsAction.waitUntilElementDisplay(CustomRules.locatorPresentInSite(website+".Payment.coupondiscount",this.ormData), "30");
-	    	catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Payment.coupondiscount",this.ormData));
-
-	    }*/
-	@Then("^User empty minicart$")
-	public void user_empty_minicart_if_product_were_there() throws Throwable {	
-		try{	catsAction.pageLoadWait();
-		Thread.sleep(10000);
-		if(getDriver().findElementByXPath("//div[@class='chevronDown'][@tabindex=0]").isDisplayed())
-		{   
-			Thread.sleep(4000);
-			catsAction.clickJS("//div[@class='chevronDown'][@tabindex=0]");
-		}
-		}catch(Exception e)
-		{
-			System.out.println("Minicart already expanded");
-		}
-
-		List<WebElement> noOfProduct_MiniCart = getDriver().findElementsByXPath(catsVariable.getORM(website+".Booking.DeleteIcon").getXpath()); 
-
-		System.out.println("noOfProduct_MiniCart: "+noOfProduct_MiniCart.size());
-
-		for(int i=0; i<noOfProduct_MiniCart.size();i++)
-		{
-			catsAction.click(CustomRules.locatorPresentInSite(website+".Booking.DeleteIcon",this.ormData));
-			Thread.sleep(3000);
-			catsAction.click(CustomRules.locatorPresentInSite(website+".Booking.ConfirmDelete",this.ormData));
-			Thread.sleep(3000);
-		}
-		System.out.println("noOfProduct_MiniCart: "+noOfProduct_MiniCart);
 
 	}
+
 	//-----------------------------------------
 
 	@When("^User clicks on main Menu Experiences item and select \"([^\"]*)\"$")
@@ -215,8 +166,8 @@ public class PLP extends CATSCucumberConfig{
 		catsAction.hoverNClickSubItem(CustomRules.locatorPresentInSite(website + ".HomePage.GlobalHeaderMenuBarlistExperience",this.ormData),subMenuItem);
 		catsAction.pageLoadWait();
 		Thread.sleep(5000);
+		
 		try{
-
 			if(getDriver().findElement(By.xpath("//div[@class='loading']")).isDisplayed()){
 				System.out.println("Inside loader handler");
 				getDriver().getCurrentUrl();
@@ -230,7 +181,6 @@ public class PLP extends CATSCucumberConfig{
 
 			System.out.println("Exception occured"+e);
 		}
-
 	}
 
 
@@ -256,6 +206,7 @@ public class PLP extends CATSCucumberConfig{
 			Thread.sleep(6000);
 			//catsAction.waitUntilElementDisplay(website + ".BookNowOverlay.SelectDateOverlay", "30");
 			//catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website + ".BookNowOverlay.SelectDateOverlay",this.ormData));
+
 			if(waitelement(".BookNowOverlay.SelectDateOverlay",30))
 			{
 				if(dateSelection()){
@@ -266,7 +217,7 @@ public class PLP extends CATSCucumberConfig{
 				System.out.println("Book now overlay not opened for product");
 			}
 			System.out.println("Click on Book now button iteration  "+i);
-		}    
+		}  
 		System.out.println("for loop done");
 
 	}
@@ -276,8 +227,8 @@ public class PLP extends CATSCucumberConfig{
 		List<WebElement> discoverMoreButtonList = getDriver().findElements(By.xpath("//div[@class='readMoreCTA']"));
 		System.out.println("Total no of links Available: "+discoverMoreButtonList.size());
 		for (int i = 1; i <=discoverMoreButtonList.size(); i++) 
-		{ 
-            waitelement(org.openqa.selenium.By.xpath("(//div[@class='readMoreCTA'])["+i+"]"),30);
+		{
+			waitelement(org.openqa.selenium.By.xpath("(//div[@class='readMoreCTA'])["+i+"]"),30);
 			catsAction.click("(//div[@class='readMoreCTA'])["+i+"]");
 			Thread.sleep(3000);
 			catsAction.scrollDownByOffset("350");
@@ -288,19 +239,18 @@ public class PLP extends CATSCucumberConfig{
 			catsAction.click(CustomRules.locatorPresentInSite(website+".PDPbook.BookNow",this.ormData));
 			Thread.sleep(10000);
 			System.out.println("Clicked on Book now on PDP,Waiting for Book now overlay to Open...");
-			if(waitelement(".BookNowOverlay.SelectDateOverlay",90)){
 
-				if(dateSelection()){
-					break;
-				}
+			if (dateSelection())
+			{
+				break;
 
-
-			}else
+			} 
+			else
 			{
 				catsAction.navigateBack();
 				catsAction.pageLoadWait();
 			}
-
+			
 			System.out.println("Clicking on Discover More for iteration..  "+i);
 			catsAction.waitUntilElementDisplay(CustomRules.locatorPresentInSite(website+".PDPbook.DiscoverMore",this.ormData),"60");
 
@@ -318,7 +268,6 @@ public class PLP extends CATSCucumberConfig{
 		waitelement(".Product_Booking.TermsAndConditionlink",20);
 		Thread.sleep(2000);
 		catsAction.clickJS(CustomRules.locatorPresentInSite(website+".BookNowOverlay.TermsAndConditionCheckBox",this.ormData));
-
 	}
 
 	@And("^User click on Add to cart Button on select Date Overlay$")
@@ -434,6 +383,7 @@ public class PLP extends CATSCucumberConfig{
 		catsAction.clickJS(CustomRules.locatorPresentInSite(website + ".Booking.GiftVoucherItemSelectButton",this.ormData));
 
 	}
+
 	@When("^User select item in MOTORSPORTS list option$")
 	public void user_select_item_in_motorsports_list_option() throws Throwable {
 		catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website + ".Booking.MotorSportItemSelectButton", this.ormData));
@@ -475,9 +425,8 @@ public class PLP extends CATSCucumberConfig{
 
 	@Then("^User select quantity$")
 	public void user_select_quantity() throws Throwable {
-		catsAction.waitUntilElementDisplay(CustomRules.locatorPresentInSite(website+".BookNowOverlay.Quantity",this.ormData),"60");
 		Thread.sleep(2000);
-		catsAction.click(CustomRules.locatorPresentInSite(website+".BookNowOverlay.Quantity",this.ormData));
+		catsAction.click(website + ".BookNowOverlay.Quantity");
 
 	}
 
@@ -518,22 +467,6 @@ public class PLP extends CATSCucumberConfig{
 		Thread.sleep(6000);
 
 	}
-	//  MAR-31	
-	@And("^User select Non-Dated product \"([^\"]*)\" and click on book now button.$")
-	public void user_select_NonDated_product_something_and_click_on_book_now_button(String featureName) throws Throwable {
-		
-		catsAction.pageLoadWait();
-        Thread.sleep(8000);
-		System.out.println("product to search" +featureName);
-		 
-		// Add step to click on Load more.
-		clickBookNowButtonOfGivenFeature(featureName);
-		catsAction.pageLoadWait();
-		Thread.sleep(2000);
-		//catsAction.waitUntilElementNotDisplay("//*[@class='loading']", "30");
-		
-
-	}
 
 
 
@@ -558,7 +491,7 @@ public class PLP extends CATSCucumberConfig{
 		catsAction.scrollDownByOffset("350");
 		Thread.sleep(5000);
 	}
-	/*@Then("^User empty minicart$")
+	@Then("^User empty minicart$")
 	public void user_empty_minicart_if_product_were_there() throws Throwable {    
 		try{    catsAction.pageLoadWait();
 		Thread.sleep(10000);
@@ -596,7 +529,7 @@ public class PLP extends CATSCucumberConfig{
 		}
 		System.out.println("noOfProduct_MiniCart: "+noOfProduct_MiniCart);
 
-	}*/
+	}
 	@And("^user apply PromoCode in Mini cart$")
 	public void user_apply_PromoCode_in_Mini_cart() throws Throwable {
 		catsAction.waitUntilElementDisplay(CustomRules.locatorPresentInSite(website+".Ticket.EnterPromoCode",this.ormData),"30");
@@ -623,7 +556,23 @@ public class PLP extends CATSCucumberConfig{
 
 
 	}
+	@Then("^verify copuon discount removed$")
+	public void verify_copuon_discount_removed() throws Throwable
+	{
+		Thread.sleep(2000);
+		catsAction.waitUntilElementDisplay(CustomRules.locatorPresentInSite(website+".Ticket.EnterPromoCode",this.ormData),"30");
 
+
+	}
+
+	@And("^user navigate back to minicart$")
+	public void user_navigate_back_to_minicart() throws Throwable
+	{
+		Thread.sleep(2000);
+		catsAction.navigateBack();
+		catsAction.waitUntilElementDisplay(CustomRules.locatorPresentInSite(website+".Ticket.EnterPromoCode",this.ormData),"30");
+
+	}
 	@And("^verify coupon removed from minicart$")
 	public void verify_coupon_removed_from_minicart() throws Throwable
 	{
@@ -693,7 +642,13 @@ public class PLP extends CATSCucumberConfig{
 
 	}
 
-
+	@When("User navigate back to booking page Mini cart should not have the deleted product in minicart.")
+	public void Mini_cart_should_not_have_the_deleted_product() throws InterruptedException {
+		//catsAction.navigateBack();
+		catsAction.pageLoadWait();
+		Thread.sleep(5000);
+		catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Ticket.EmptyCart",this.ormData));
+	}
 
 	@When("^User validate \"([^\"]*)\" PLP products")
 	public void user_validate_PLP_products(String url) throws Throwable{		
@@ -701,7 +656,7 @@ public class PLP extends CATSCucumberConfig{
 		//catsAction.navigateTo("https://fe-sit3-apimgmt-service.azure-api.net/v1/ymcproductsprod");
 		//Thread.sleep(6000);
 		//String apiData=getDriver().getPageSource();
-
+		
 		/* XmlReader xmlRead= new XmlReader(getDriver().getPageSource());
 		 String apiData= xmlRead.getNodeValue("/html/body/pre").get(0);
 		 JSONObject obj = new JSONObject(apiData);
@@ -709,7 +664,7 @@ public class PLP extends CATSCucumberConfig{
 		System.out.println(jsonToXml);
 		catsAction.navigateTo(url);
 		XmlReader productData= new XmlReader(getDriver().getPageSource());*/
-
+		
 		Thread.sleep(6000);
 		catsAction.clickJS(CustomRules.locatorPresentInSite(website+".Language.CookieAccept",this.ormData));
 		try{
@@ -728,7 +683,7 @@ public class PLP extends CATSCucumberConfig{
 			plpProductNameList.add( element.getText());
 			//plpProductDetailUrl.add(element.getAttribute(arg0))
 		}
-
+		
 		for(String productName : plpProductNameList){
 			System.out.println("Product Name valdation ::::::::::::::::::::::::"+ productName);
 			catsAction.reportResultInfo("Product overlay validation for"+productName, productName, productName, productName);
@@ -738,11 +693,11 @@ public class PLP extends CATSCucumberConfig{
 			}catch (Exception e) {
 				catsAction.reportResultWarn(productName, productName, productName, e.toString());
 			}
-
-			//			System.out.println("Overlay Name::::::::::::"+getDriver().findElementByXPath(".//div[@class='overlay-wrapper']").getAttribute("class"));
-
+			
+//			System.out.println("Overlay Name::::::::::::"+getDriver().findElementByXPath(".//div[@class='overlay-wrapper']").getAttribute("class"));
+			
 			System.out.println("element there");
-
+			
 			if(getDriver().findElementsByXPath(".//div[@class='overlay-wrapper']").size() <= 0 && getDriver().getCurrentUrl().equals(url)){
 				System.out.println(":::::::::::::::::::Inside retry Option:::::::::::::::::::::");
 				catsAction.navigateTo(url);
@@ -757,7 +712,7 @@ public class PLP extends CATSCucumberConfig{
 				clickBookNowButtonOfGivenFeature(productName);
 				Thread.sleep(20000);
 			}	
-
+			
 			if(getDriver().getCurrentUrl().equals(url)){
 				Thread.sleep(3000);
 				catsAction.waitUntilElementDisplay(".//*[@class='overlay-wrapper']", "60");
@@ -779,7 +734,7 @@ public class PLP extends CATSCucumberConfig{
 				}catch (Exception e) {
 					System.out.println(e);
 				}*/
-
+				
 				catsAction.clickJS(".//*[@class='overlay--close-button']");
 			}else{
 				Thread.sleep(10000);
@@ -819,7 +774,7 @@ public class PLP extends CATSCucumberConfig{
 		for (WebElement elementDetail : productDetailEle){
 			plpProductDetailUrl.add(elementDetail.getAttribute("href"));
 		}
-
+		
 		for(String urlPDP: plpProductDetailUrl){
 			catsAction.navigateTo(urlPDP);
 			catsAction.scrollDownByOffset("200");
@@ -844,6 +799,23 @@ public class PLP extends CATSCucumberConfig{
 		System.out.println(plpProductDetailUrl);
 		getDriver().getCurrentUrl();
 	}
+	
+	@And("^User select Non-Dated product \"([^\"]*)\" and click on book now button.$")
+	public void user_select_NonDated_product_something_and_click_on_book_now_button(String featureName) throws Throwable {
+		
+		catsAction.pageLoadWait();
+        Thread.sleep(8000);
+		System.out.println("product to search" +featureName);
+		 
+		// Add step to click on Load more.
+		clickBookNowButtonOfGivenFeature(featureName);
+		catsAction.pageLoadWait();
+		Thread.sleep(2000);
+		//catsAction.waitUntilElementNotDisplay("//*[@class='loading']", "30");
+		
+
+	}
+	
 	//  MAR-31	
 	public boolean waitelement(String locator,int time){
 		try{
@@ -914,7 +886,7 @@ public class PLP extends CATSCucumberConfig{
 			wb.click();
 		}catch(Exception e){
 
-			System.out.println("Exception Occured : Timed out Element not found");
+			System.out.println("Exception Occured : Timed out Element not found"+e);
 			return false;
 
 		}
@@ -1103,7 +1075,13 @@ public class PLP extends CATSCucumberConfig{
 		catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".MyPayment.NoTicketInCartLabel",this.ormData));
 	}
 
+
+
 }
+
+
+
+
 
 
 

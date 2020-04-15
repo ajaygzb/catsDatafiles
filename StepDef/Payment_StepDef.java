@@ -1,6 +1,11 @@
 package cats.selenium.bdd.stepdef;
 
+import java.io.File;
+import java.io.FileFilter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.sapient.qa.cats.core.framework.CATSCucumberConfig;
 
 import cucumber.api.Scenario;
@@ -71,13 +76,13 @@ public class Payment_StepDef extends CATSCucumberConfig {
 	public void select_terms_and_condition_checkbox() throws InterruptedException {
 		catsAction.pageLoadWait();
 		Thread.sleep(10000);
-		catsAction.clickJS(CustomRules.locatorPresentInSite(website+".Ticket.T&C",this.ormData));
-	}
+		catsAction.clickJS(CustomRules.locatorPresentInSite(website+".Ticket.T&C",this.ormData));	
+		}
 
 	@And("^click on Pay Now button$")
 	public void click_on_pay_now_button() throws Throwable {
 		Thread.sleep(3000);
-		catsAction.click(CustomRules.locatorPresentInSite(website+".Payment.payNow",this.ormData));
+		catsAction.clickJS(CustomRules.locatorPresentInSite(website+".Payment.payNow",this.ormData));
 		Thread.sleep(7000);
 		catsAction.pageLoadWait();
 	}
@@ -106,16 +111,9 @@ public class Payment_StepDef extends CATSCucumberConfig {
 		
 	}
 	
-	@And("^user verify mode of payment$")
-	public void user_verify_mode_of_payment() throws Throwable {
-		catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Payment.paymentmode",this.ormData));
-	}
 	
-	@And("^user verify Order id is displayed$")
-	public void user_verify_order_id_is_displayed() throws Throwable {
-		catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".MyPayment.Orderid",this.ormData));
 	
-	}
+
 	@And("^select terms and condition checkbox for paypal$")
 	public void select_terms_and_condition_checkbox_for_paypal() throws Throwable {
 		catsAction.scrollDownByOffset("600");
@@ -135,7 +133,7 @@ public class Payment_StepDef extends CATSCucumberConfig {
 		//catsAction.waitUntilElementDisplay(CustomRules.locatorPresentInSite(website+".Payment.paypalProceed",this.ormData),"60");
 		Thread.sleep(2000);
 		catsAction.click(CustomRules.locatorPresentInSite(website+".Payment.paypalProceed",this.ormData));
-		Thread.sleep(50000);
+		Thread.sleep(30000);
 		catsAction.switchWindowByID("1");
 		catsAction.waitUntilElementDisplay(CustomRules.locatorPresentInSite(website+".Payment.EmailId",this.ormData),"5");
 		catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Payment.EmailId",this.ormData));
@@ -144,8 +142,10 @@ public class Payment_StepDef extends CATSCucumberConfig {
 		catsAction.waitUntilElementDisplay(CustomRules.locatorPresentInSite(website+".Payment.Password",this.ormData),"20");
 		catsAction.enter(CustomRules.locatorPresentInSite(website+".Payment.Password",this.ormData), "$MiralGlobal.PasswordForPayPal.<<site>>");
 		catsAction.clickJS(CustomRules.locatorPresentInSite(website+".Payment.Login",this.ormData));
-		catsAction.waitUntilElementDisplay(CustomRules.locatorPresentInSite(website+".Payment.continueOnPaypal",this.ormData),"10");
-		catsAction.clickJS(CustomRules.locatorPresentInSite(website+".Payment.continueOnPaypal",this.ormData));
+		Thread.sleep(15000);
+		catsAction.scrollPageDown();
+		catsAction.waitUntilElementDisplay(CustomRules.locatorPresentInSite(website+".Payment.continueOnPaypal",this.ormData),"20");
+		catsAction.click(CustomRules.locatorPresentInSite(website+".Payment.continueOnPaypal",this.ormData));
 		catsAction.switchWindowByID("0");
 		Thread.sleep(2000);
 
@@ -246,15 +246,15 @@ public class Payment_StepDef extends CATSCucumberConfig {
 
 	}
 
+	@And("^user verify mode of payment$")
+    public void user_verify_mode_of_payment() throws Throwable {
+    catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Payment.paymentmode",this.ormData));
+    }
     
-    
-	@Then("^verify copuon discount removed$")
-	public void verify_copuon_discount_removed() throws Throwable
-	{
-		Thread.sleep(2000);
-		catsAction.waitUntilElementDisplay(CustomRules.locatorPresentInSite(website+".Ticket.EnterPromoCode",this.ormData),"30");
-		
-		
+    @And("^user verify Order id is displayed$")
+    public void user_verify_order_id_is_displayed() throws Throwable {
+    catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".MyPayment.Orderid",this.ormData));
+           
     }
     
     @And("^user verify Order Total should be displayed$")
@@ -279,29 +279,17 @@ public class Payment_StepDef extends CATSCucumberConfig {
         catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".MyPayment.ProductQuantity",this.ormData));
        
     }
-
-	@And("^user navigate back to minicart$")
-	public void user_navigate_back_to_minicart() throws Throwable
-	{
-		Thread.sleep(2000);
-		catsAction.navigateBack();
-		catsAction.waitUntilElementDisplay(CustomRules.locatorPresentInSite(website+".Ticket.EnterPromoCode",this.ormData),"30");
-		
-		
-
-	}
    
     @And("^user verify Date valid is displayed$")
     public void Date_valid_is_displayed() throws Throwable {
         catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".MyPayment.Validon",this.ormData));
        
     }
-
-
     @Then("^user verify Order History section$")
     public void Order_History_section() throws Throwable {
         
-        // Navigate user to Order/Purchase history in my profile
+       try{
+    	// Navigate user to Order/Purchase history in my profile
         catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".MyPayment.Orderid",this.ormData));
         String orderIDfromconfirmation = getDriver().findElementByXPath(catsVariable.getORM(CustomRules.locatorPresentInSite(website+".MyPayment.Orderid",this.ormData)).getXpath()).getText()
                 .replaceAll("[A-Z]","").trim();
@@ -313,14 +301,17 @@ public class Payment_StepDef extends CATSCucumberConfig {
         catsAction.waitUntilElementDisplay(CustomRules.locatorPresentInSite(website+".UserProfile.Purchases",this.ormData),"90");
         Thread.sleep(5000);//orderidfrompurchasehistory
         catsAction.click(CustomRules.locatorPresentInSite(website+".UserProfile.Purchases",this.ormData));
-        catsAction.waitUntilElementDisplay(CustomRules.locatorPresentInSite(website+".UserProfile.orderidfrompurchasehistory",this.ormData),"60");
+        catsAction.waitUntilElementDisplay(CustomRules.locatorPresentInSite(website+".UserProfile.orderidfrompurchasehistory",this.ormData),"160");
         Thread.sleep(10000);
         catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".UserProfile.orderidfrompurchasehistory",this.ormData));
         String orderIDfromorderhistory = getDriver().findElementByXPath(catsVariable.getORM(CustomRules.locatorPresentInSite(website+".UserProfile.orderidfrompurchasehistory",this.ormData)).getXpath()).getText()
                 .replaceAll("[A-Z]","").trim();
     
         catsAction.verifyVariableValue(orderIDfromconfirmation, orderIDfromorderhistory);
-    
+       }catch(Exception e){
+    	   
+    	   System.out.println("Could not verify Purchase History"+e);
+       }
     }
     
     
@@ -360,9 +351,9 @@ public class Payment_StepDef extends CATSCucumberConfig {
             catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".UserProfile.Purchases",this.ormData));
             
         }
-        
-     //mar-2
-        @Then("^user verify confirmation email contains order id$")
+		
+		
+		@Then("^user verify confirmation email contains order id$")
         public void verifyConfirmationEmail() throws Throwable {
         	catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".MyPayment.Orderid",this.ormData));
             String orderIDfromconfirmation = getDriver().findElementByXPath(catsVariable.getORM(CustomRules.locatorPresentInSite(website+".MyPayment.Orderid",this.ormData)).getXpath()).getText()
@@ -375,16 +366,6 @@ public class Payment_StepDef extends CATSCucumberConfig {
             
             catsAction.verifyVariableValue(orderIDfromconfirmation,orderIDfromEmail);
             
-            
-            
-            
-            
-        
-            
         }
-        
-        
-        
-        
-        
+		
         }
