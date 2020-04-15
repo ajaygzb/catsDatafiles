@@ -87,8 +87,10 @@ public class PLP extends CATSCucumberConfig{
 				System.out.println("Slot available" +m);
 				catsAction.clickJS(CustomRules.locatorPresentInSite(website + ".BookNowOverlay.availabledate",this.ormData));
 				catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".BookNowOverlay.PreferredtimeSlots",this.ormData));
-				catsAction.clickJS(CustomRules.locatorPresentInSite(website+".BookNowOverlay.PreferredtimeSlots",this.ormData));
-				catsAction.clickJS(CustomRules.locatorPresentInSite(website+".BookNowOverlay.PreferredtimeSlotsOption",this.ormData));
+				Thread.sleep(3000);
+                                catsAction.clickJS(CustomRules.locatorPresentInSite(website+".BookNowOverlay.PreferredtimeSlots",this.ormData));
+				Thread.sleep(3000);
+                                catsAction.clickJS(CustomRules.locatorPresentInSite(website+".BookNowOverlay.PreferredtimeSlotsOption",this.ormData));
 				flag = true ;
 				break;
 			}
@@ -239,13 +241,13 @@ public class PLP extends CATSCucumberConfig{
 			catsAction.click(CustomRules.locatorPresentInSite(website+".PDPbook.BookNow",this.ormData));
 			Thread.sleep(10000);
 			System.out.println("Clicked on Book now on PDP,Waiting for Book now overlay to Open...");
-
+                        if(waitelement(".BookNowOverlay.SelectDateOverlay",90)){
 			if (dateSelection())
 			{
 				break;
 
 			} 
-			else
+			}else
 			{
 				catsAction.navigateBack();
 				catsAction.pageLoadWait();
@@ -845,7 +847,7 @@ public class PLP extends CATSCucumberConfig{
 			wait.until(ExpectedConditions.visibilityOf(wb));	
 		}catch(Exception e){
 
-			System.out.println("Exception Occured : Timed out Element not found");
+			System.out.println("Exception Occured : Timed out Element not found"+e);
 			return false;
 
 		}
@@ -865,7 +867,7 @@ public class PLP extends CATSCucumberConfig{
 			wb.click();
 		}catch(Exception e){
 
-			System.out.println("Exception Occured : Timed out Element not found");
+			System.out.println("Exception Occured : Timed out Element not found unable to click"+e);
 			return false;
 
 		}
@@ -886,7 +888,7 @@ public class PLP extends CATSCucumberConfig{
 			wb.click();
 		}catch(Exception e){
 
-			System.out.println("Exception Occured : Timed out Element not found"+e);
+			System.out.println("Exception Occured : Timed out Element not found");
 			return false;
 
 		}

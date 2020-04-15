@@ -130,6 +130,7 @@ public class ProductBooking_StepDef extends CATSCucumberConfig {
 	public void user_click_on_Check_out_button_on_mini_cart() throws InterruptedException {
 		Thread.sleep(4000);
 		catsAction.clickJS(CustomRules.locatorPresentInSite(website+".Ticket.CheckOut",this.ormData));
+		Thread.sleep(10000);
 	}
 
 	@Then("user verifies the product amount listed on cart page")
@@ -143,6 +144,7 @@ public class ProductBooking_StepDef extends CATSCucumberConfig {
 		// Write code here that turns the phrase above into concrete actions
 		//	 	catsAction.scrollIntoView(website+".Ticket.AnnualPasses");
 		catsAction.scrollPageUp();
+                Thread.sleep(2000);
 		catsAction.waitUntilElementDisplay(CustomRules.locatorPresentInSite(website+".Ticket.AnnualPasses",this.ormData), "30");
 		Thread.sleep(4000);
 		catsAction.click(CustomRules.locatorPresentInSite(website+".Ticket.AnnualPasses",this.ormData));
@@ -195,7 +197,7 @@ public class ProductBooking_StepDef extends CATSCucumberConfig {
 	@Then("^Add ticket to cart for Experiences or Tour$")
 	public void add_ticket_to_cart_for_experiences() throws Throwable {
 		// 	catsAction.pageLoadWait();
-		catsAction.click(CustomRules.locatorPresentInSite(website+".Product_Booking.SelectTicket",this.ormData));
+		catsAction.clickJS(CustomRules.locatorPresentInSite(website+".Product_Booking.SelectTicket",this.ormData));
 
 		Thread.sleep(2000);
 		SimpleDateFormat dateTimeInGMT = new SimpleDateFormat("dd");
@@ -209,8 +211,8 @@ public class ProductBooking_StepDef extends CATSCucumberConfig {
 		while(counter<=dateSearchCounter){
 			if(date>28){
 				date=1;
-				catsAction.click(CustomRules.locatorPresentInSite(website+".Product_Booking.nextMonthClickOnCalender",this.ormData));
-				catsAction.click("//*[@aria-label='day-"+date+"']");
+				catsAction.clickJS(CustomRules.locatorPresentInSite(website+".Product_Booking.nextMonthClickOnCalender",this.ormData));
+				catsAction.clickJS("//*[@aria-label='day-"+date+"']");
 			}
 			else{
 				catsAction.click("//*[@aria-label='day-"+date+"']");
@@ -368,13 +370,13 @@ public class ProductBooking_StepDef extends CATSCucumberConfig {
 	@And("^User Delete item from the cart$")
 	public void user_delete_item_from_the_cart() throws Throwable
 	{
-		catsAction.click(CustomRules.locatorPresentInSite(website+".Ticket.AdultDelete",this.ormData));
+		catsAction.clickJS(CustomRules.locatorPresentInSite(website+".Ticket.AdultDelete",this.ormData));
 		Thread.sleep(2000);
-		catsAction.click(CustomRules.locatorPresentInSite(website+".Ticket.YESconformDelete",this.ormData));
+		catsAction.clickJS(CustomRules.locatorPresentInSite(website+".Ticket.YESconformDelete",this.ormData));
 		Thread.sleep(2000);  
-		catsAction.click(CustomRules.locatorPresentInSite(website+".Ticket.JuniorDelete",this.ormData));
+		catsAction.clickJS(CustomRules.locatorPresentInSite(website+".Ticket.JuniorDelete",this.ormData));
 		Thread.sleep(2000);
-		catsAction.click(CustomRules.locatorPresentInSite(website+".Ticket.YESconformDelete",this.ormData));
+		catsAction.clickJS(CustomRules.locatorPresentInSite(website+".Ticket.YESconformDelete",this.ormData));
 
 
 	}
@@ -447,8 +449,10 @@ public class ProductBooking_StepDef extends CATSCucumberConfig {
 	@Then("^User click on grid expand button$")
 	public void user_click_on_grid_expand_button() throws Throwable 
 	{
-		catsAction.click(CustomRules.locatorPresentInSite(website+".Payment.GridExpandBtn",this.ormData));
-
+		Thread.sleep(3000);
+		catsAction.clickJS(CustomRules.locatorPresentInSite(website+".Payment.GridExpandBtn",this.ormData));
+		Thread.sleep(10000);
+		System.out.println("::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
 	}
 
 	@Then("^User addition more junior tickets and adult tickets$")
@@ -862,7 +866,9 @@ public class ProductBooking_StepDef extends CATSCucumberConfig {
 		{
 			catsAction.click(CustomRules.locatorPresentInSite(website+".CheckIn.selectcart",this.ormData));
 			catsAction.click(CustomRules.locatorPresentInSite(website+".CheckIn.date",this.ormData)); 
+			Thread.sleep(5000);
 			catsAction.click(CustomRules.locatorPresentInSite(website+".CheckIn.Add",this.ormData));
+			Thread.sleep(5000);
 			catsAction.click(CustomRules.locatorPresentInSite(website+".CheckIn.AddToCart",this.ormData));
 		}
 	}

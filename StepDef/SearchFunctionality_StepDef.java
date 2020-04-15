@@ -88,7 +88,7 @@ public class SearchFunctionality_StepDef extends CATSCucumberConfig {
 //    		}
   }
 
-    @And("^User clicks on search icon in header$")
+   @And("^User clicks on search icon in header$")
     public void user_clicks_on_search_icon_in_header() throws Throwable {
     	//catsAction.click("${{MiralGlobal.ORMfile.<<site>>}}.Search.HeaderSearchIcon"); 
     	catsAction.pageLoadWait();

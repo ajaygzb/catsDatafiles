@@ -123,7 +123,7 @@ public class Payment_StepDef extends CATSCucumberConfig {
 		catsAction.scrollDownByOffset("200");
 		catsAction.clickJS(CustomRules.locatorPresentInSite(website+".Payment.T&CforPaypal",this.ormData));
 		catsAction.scrollDownByOffset("200");
-		Thread.sleep(4000);
+		Thread.sleep(10000);
 
 	}
 
@@ -287,9 +287,8 @@ public class Payment_StepDef extends CATSCucumberConfig {
     }
     @Then("^user verify Order History section$")
     public void Order_History_section() throws Throwable {
-        
-       try{
-    	// Navigate user to Order/Purchase history in my profile
+        try{
+        // Navigate user to Order/Purchase history in my profile
         catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".MyPayment.Orderid",this.ormData));
         String orderIDfromconfirmation = getDriver().findElementByXPath(catsVariable.getORM(CustomRules.locatorPresentInSite(website+".MyPayment.Orderid",this.ormData)).getXpath()).getText()
                 .replaceAll("[A-Z]","").trim();
@@ -308,11 +307,13 @@ public class Payment_StepDef extends CATSCucumberConfig {
                 .replaceAll("[A-Z]","").trim();
     
         catsAction.verifyVariableValue(orderIDfromconfirmation, orderIDfromorderhistory);
-       }catch(Exception e){
+        }catch(Exception e){
     	   
     	   System.out.println("Could not verify Purchase History"+e);
        }
     }
+    
+    
     
     
     @When("^user clicks on an order in the list$")

@@ -77,14 +77,14 @@ public class WishList_verify_StepDef extends  CATSCucumberConfig{
 	@Then("^User click on hotels navigation link$")
 	public void user_click_on_hotels() throws Throwable {
 		Thread.sleep(30000);
-		catsAction.click(CustomRules.locatorPresentInSite(website+".Home.HoteNavigationLink",this.ormData));
+		catsAction.clickJS(CustomRules.locatorPresentInSite(website+".Home.HoteNavigationLink",this.ormData));
 		catsAction.pageLoadWait();
 
 	}
 
 	@And("^User click on hotels wishlist icon$")
 	public void user_click_on_hotels_wishlist_icon() throws Throwable {
-		catsAction.click(CustomRules.locatorPresentInSite(website+".HotelPage.WishListIconOnHotel",this.ormData));
+		catsAction.clickJS(CustomRules.locatorPresentInSite(website+".HotelPage.WishListIconOnHotel",this.ormData));
 		Thread.sleep(5000);
 		try{
 			if(getDriver().findElementByXPath(catsVariable.getORM(CustomRules.locatorPresentInSite(website+".HotelPage.CloseLoginPopUp",this.ormData)).getXpath()).isDisplayed())
@@ -103,7 +103,7 @@ public class WishList_verify_StepDef extends  CATSCucumberConfig{
 	public void user_verify_wishlist_on_wishlist_page() throws Throwable {
 		Thread.sleep(5000);
 		catsAction.scrollPageUp();
-		catsAction.click(CustomRules.locatorPresentInSite(website+".Home.WishlistFilledIconHeader",this.ormData));
+		catsAction.clickJS(CustomRules.locatorPresentInSite(website+".Home.WishlistFilledIconHeader",this.ormData));
 		Thread.sleep(20000);
 		catsAction.waitUntilElementDisplay(CustomRules.locatorPresentInSite(website+".Wishlist.WishlistItem",this.ormData), "30");
 		catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Wishlist.WishlistItem",this.ormData));

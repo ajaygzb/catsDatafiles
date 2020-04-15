@@ -68,7 +68,7 @@ public class VerifyCookie_StepDef extends  CATSCucumberConfig {
 	@And("^User click on Contact Us page$")
 	public void user_click_on_contact_us_page() throws Throwable {
 		//catsAction.scrollPageDown();
-		catsAction.click(CustomRules.locatorPresentInSite(website+".Home.ContactUsNavigationLink",this.ormData));
+		catsAction.clickJS(CustomRules.locatorPresentInSite(website+".Home.ContactUsNavigationLink",this.ormData));
 		Thread.sleep(5000);
 	}
 

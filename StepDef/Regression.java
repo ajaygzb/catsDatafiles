@@ -164,7 +164,6 @@ public class Regression extends CATSCucumberConfig {
 				break;
 			}  
 	  }
-	  
 	  @Then("^Verify user navigate to ticket page$")
 	    public void verify_user_navigate_to_ticket_page() throws Throwable {
 		  catsAction.pageLoadWait();
@@ -692,7 +691,7 @@ public class Regression extends CATSCucumberConfig {
 	    }
 	    
 	    //----------------explore------------------------------
-	    @When("^User clicks on main Menu explore item and select \"([^\"]*)\"$")
+	@When("^User clicks on main Menu explore item and select \"([^\"]*)\"$")
 	    public void user_clicks_on_main_menu_explore_item_and_select_something(String exploreSubMenu) throws Throwable {
 	    	
 	    	 catsAction.pageLoadWait();
@@ -758,8 +757,7 @@ public class Regression extends CATSCucumberConfig {
 				
 				
 				break;
-				
-            case("YWW"):
+                         case("YWW"):
 				
             catsAction.scrollDownByOffset("800");
             catsAction.waitUntilElementDisplay(CustomRules.locatorPresentInSite(website+".DiningPage.ReadMore",this.ormData),"90");
@@ -767,7 +765,7 @@ public class Regression extends CATSCucumberConfig {
 	    	catsAction.clickJS(CustomRules.locatorPresentInSite(website+".DiningPage.ReadMore",this.ormData));
 			catsAction.pageLoadWait();	
 				
-				break;		
+				break;	
 
 			default:
 				break;
@@ -809,8 +807,7 @@ public class Regression extends CATSCucumberConfig {
 	    	catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".DiningPage.DineTypeIcon", this.ormData));
 	    		
 	    		break;
-	    		
-           case("YWW"):
+                 case("YWW"):
 	    		
 	    	System.out.println("Added locators specific for YWW");
            catsAction.pageLoadWait();
@@ -849,8 +846,7 @@ public class Regression extends CATSCucumberConfig {
 				
 				
 				break;
-				
-             case("YWW"):
+                            case("YWW"):
 				
 				catsAction.scrollDownByOffset("800");
 			Thread.sleep(2000);
@@ -965,7 +961,7 @@ public class Regression extends CATSCucumberConfig {
 	    }
 	    @Then("^Verify user navigate to shopping listing page$")
 	    public void verify_user_navigate_to_shpping_listing_page() throws Throwable 
-	    {   catsAction.pageLoadWait();
+	    {    catsAction.pageLoadWait();
 	    	catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".ShoppingPage.ShoppingList", this.ormData));
 
 	    }
