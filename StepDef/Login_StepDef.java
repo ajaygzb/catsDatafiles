@@ -163,7 +163,7 @@ public class Login_StepDef extends CATSCucumberConfig {
 		Thread.sleep(10000);
 		catsAction.hover(CustomRules.locatorPresentInSite(website + ".Login.Profile",this.ormData));
 		Thread.sleep(1000);
-		catsAction.click(CustomRules.locatorPresentInSite(website+".Login.ProfileLink",this.ormData));
+		catsAction.clickJS(CustomRules.locatorPresentInSite(website+".Login.ProfileLink",this.ormData));
 	}
 
 	@When("^User able to see header part$")
@@ -184,6 +184,8 @@ public class Login_StepDef extends CATSCucumberConfig {
   Thread.sleep(2000);
   catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Footer.SubFooter",this.ormData));
   }
+ 
+ 
 }
 
 

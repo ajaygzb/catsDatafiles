@@ -2,6 +2,10 @@ package cats.selenium.bdd.stepdef;
 
 import com.ibm.icu.impl.Assert;
 import java.io.IOException;
+import java.util.List;
+
+import org.openqa.selenium.WebElement;
+
 import com.sapient.qa.cats.core.framework.CATSCucumberConfig;
 import cucumber.api.Scenario;
 import cucumber.api.java.en.And;
@@ -451,6 +455,107 @@ public class Registration_StepDef extends CATSCucumberConfig {
     {
  Thread.sleep(2000);
 catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website + ".Header.MediaCenter",this.ormData));
+}
+
+@And("^User Without any Address and clcik on add address$")
+public void user_without_any_address_and_clcik_on_add_address() throws Throwable 
+{
+	Thread.sleep(2000);
+	catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website + ".ProfilePagePreference.Address",this.ormData));
+	Thread.sleep(1000);
+	catsAction.clickJS(CustomRules.locatorPresentInSite(website + ".ProfilePagePreference.Address",this.ormData));
+	Thread.sleep(1000);
+    fillAddressInformation();
+}
+
+void fillAddressInformation() throws Throwable {
+	
+	Thread.sleep(2000);
+	catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website + ".ProfilePagePreference.Address",this.ormData));
+	Thread.sleep(1000);
+	catsAction.clickJS(CustomRules.locatorPresentInSite(website + ".ProfilePagePreference.Address",this.ormData));
+	Thread.sleep(2000);
+	Thread.sleep(2000);
+	catsAction.enter(CustomRules.locatorPresentInSite(website + ".UserProfile.AddFname",this.ormData), "Roshan");
+	Thread.sleep(1000);
+	catsAction.enter(CustomRules.locatorPresentInSite(website + ".UserProfile.AddLname",this.ormData), "Mohanty");
+	Thread.sleep(2000);
+	catsAction.selectElementByValue(CustomRules.locatorPresentInSite(website+".UserProfile.ADDtype",this.ormData), "Home");
+	Thread.sleep(1000);
+	catsAction.enter(CustomRules.locatorPresentInSite(website + ".UserProfile.AddresLine1",this.ormData), "gurgaon");
+	Thread.sleep(2000);
+	 //use later on
+	catsAction.verifyValue(CustomRules.locatorPresentInSite(website+".UserProfile.AddresLine1",this.ormData), "gurgaon");
+	//catsAction.click(CustomRules.locatorPresentInSite(website + ".UserProfile.Nationality",this.ormData));
+	 catsAction.selectElementByValue(CustomRules.locatorPresentInSite(website + ".UserProfile.Country",this.ormData), "IN");
+	 Thread.sleep(1000);
+	 catsAction.enter(CustomRules.locatorPresentInSite(website + ".UserProfile.City",this.ormData), "gurgaon");
+	 Thread.sleep(1000);
+	 catsAction.enter(CustomRules.locatorPresentInSite(website + ".UserProfile.PostCode",this.ormData), "110037");
+	 Thread.sleep(1000);
+	 catsAction.enter(CustomRules.locatorPresentInSite(website + ".UserProfile.ContactNO",this.ormData),"9797979797");
+	 user_validate_the_filled_form();
+	 catsAction.click(CustomRules.locatorPresentInSite(website + ".UserProfile.Update",this.ormData));
+		Thread.sleep(3000);
+		catsAction.click(CustomRules.locatorPresentInSite(website + ".UserProfile.SuccessPOPup",this.ormData));
+}
+
+void user_validate_the_filled_form() throws Throwable 
+{
+	catsAction.verifyValue(CustomRules.locatorPresentInSite(website + ".UserProfile.AddFname",this.ormData), "Roshan");
+	Thread.sleep(1000);
+	catsAction.verifyValue(CustomRules.locatorPresentInSite(website + ".UserProfile.AddLname",this.ormData), "Mohanty");
+	Thread.sleep(2000);
+	catsAction.selectElementByValue(CustomRules.locatorPresentInSite(website+".UserProfile.ADDtype",this.ormData), "Home");
+	Thread.sleep(1000);
+	catsAction.verifyValue(CustomRules.locatorPresentInSite(website + ".UserProfile.AddresLine1",this.ormData), "gurgaon");
+	Thread.sleep(1000);
+    catsAction.verifyValue(CustomRules.locatorPresentInSite(website + ".UserProfile.Country",this.ormData), "IN");
+	Thread.sleep(1000);
+	catsAction.verifyValue(CustomRules.locatorPresentInSite(website + ".UserProfile.City",this.ormData), "gurgaon");
+	Thread.sleep(1000);
+     catsAction.verifyValue(CustomRules.locatorPresentInSite(website + ".UserProfile.PostCode",this.ormData), "110037");
+	 Thread.sleep(1000);
+
+
+
+}
+
+@Then("^User fill shipping address form$")
+public void user_fill_shipping_address_form() throws Throwable 
+{
+	for (int i = 0; i <5; i++) {
+		
+		if (i<4) {
+			fillAddressInformation();
+			System.out.println("Address successfully added");
+		}
+		if(i==4)
+		{
+			System.out.println("Add address present for 5th time ");
+			catsAction.verifyElementNotPresent(CustomRules.locatorPresentInSite(website + ".ProfilePagePreference.Address",this.ormData));
+		}
+	}
+}
+
+@And("^User Delete Address$")
+public void user_delete_address() throws Throwable
+{
+	Thread.sleep(5000);
+	List<WebElement> noOfwishlistDltBtn = getDriver().findElementsByXPath(catsVariable.getORM(website+".UserProfile.DeleteAdd").getXpath()); 
+
+	System.out.println("noOfdeleteBtn:"+noOfwishlistDltBtn.size());
+
+	for(int i=0; i<noOfwishlistDltBtn.size();i++)
+	{
+		catsAction.click(CustomRules.locatorPresentInSite(website+".UserProfile.DeleteAdd",this.ormData));
+		Thread.sleep(2000);
+		catsAction.click(CustomRules.locatorPresentInSite(website+".UserProfile.Remove",this.ormData));
+		Thread.sleep(2000);
+		catsAction.click(CustomRules.locatorPresentInSite(website + ".UserProfile.SuccessPOPup",this.ormData));
+		Thread.sleep(2000);
+		catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website + ".ProfilePagePreference.Address",this.ormData));
+}
 }
 
 }

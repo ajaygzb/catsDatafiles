@@ -417,6 +417,142 @@ public class YMC_StepDef extends CATSCucumberConfig {
   			  catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".PDPbook.ShareOverlay",this.ormData));
   				
   		  }
-		    
+		  
+  		@And("^user select Super Park Pass Type$")
+  		public void user_select_super_park_pass_type() throws Throwable {
+  			catsAction.waitUntilElementDisplay(CustomRules.locatorPresentInSite(website+".BookNowOverlay.SuperParkPass",this.ormData),"60");
+  			Thread.sleep(2000);
+  			catsAction.clickJS(CustomRules.locatorPresentInSite(website+".BookNowOverlay.SuperParkPass",this.ormData));
+
+  		}   
+  		
+  		@Then("^user is able to validate recommendations for \"([^\"]*)\" for \"([^\"]*)\"$")
+  		public void user_is_able_to_validate_recommendations_for_something(String str1, String strArg1) throws Throwable {
+  			// Add "Abu Dhabi Hill 2D" product in cart
+  			//Validate recomendations for "RED,SILVER,GOLDEN" for "1Day"
+  			//Validate recomendations for "GOLDEN" for "1Day"
+
+  			//   public void recomended(String str1, String str2){
+  			System.out.println("changing in step def");
+  			String[] productLst=str1.split(",");
+
+  			for(String product:productLst){
+  				System.out.println(product);
+
+  				switch(product){
+  				case("RED"):
+  					validateRedParking(strArg1);
+  				case("SILVER"):
+  					validateSilverParking(strArg1);
+  				case("GOLDEN"):
+  					validateGoldenCircleParking(strArg1);
+  				}
+  			}
+
+  		}
+
+  		public void validateRedParking(String Days){
+
+  			switch(Days){
+  			case("1Day"):
+  				// THU Parking and Friday Parking
+  				catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Recommendation.RedThursday",this.ormData));
+  			catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Recommendation.RedFriday",this.ormData));
+  			break;
+
+  			case("2Day"):
+  				// THU Parking and Sat and Sun Parking
+  				catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Recommendation.RedThursday",this.ormData));
+  			catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Recommendation.RedSaturday",this.ormData));
+  			catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Recommendation.RedSunday",this.ormData));
+  			break;
+  			case("3Day"):
+  				// THU Parking and Fri Sat and Sun Parking and Combo Package
+  				catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Recommendation.RedThursday",this.ormData));
+  			catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Recommendation.RedSaturday",this.ormData));
+  			catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Recommendation.RedSunday",this.ormData));
+  			catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Recommendation.RedFriday",this.ormData));
+  			catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Recommendation.RedCombo",this.ormData));
+  			break;
+  			}
+
+  		}
+
+  		public void validateSilverParking(String Days){
+
+  			switch(Days){
+  			case("1Day"):
+  				// THU Parking and Friday Parking
+  				catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Recommendation.SilverThursday",this.ormData));
+  			catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Recommendation.SilverFriday",this.ormData));
+  			break;
+  			case("2Day"):
+  				// THU Parking and Sat and Sun Parking
+  				catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Recommendation.SilverThursday",this.ormData));
+  			catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Recommendation.SilverSaturday",this.ormData));
+  			catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Recommendation.SilverSunday",this.ormData));
+  			break;
+  			case("3Day"):
+  				// THU Parking and Fri Sat and Sun Parking and Combo Package
+  				catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Recommendation.SilverThursday",this.ormData));
+  			catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Recommendation.SilverSaturday",this.ormData));
+  			catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Recommendation.SilverSunday",this.ormData));
+  			catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Recommendation.SilverFriday",this.ormData));
+  			catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Recommendation.SilverCombo",this.ormData));
+  			break;
+  			}
+
+  		}
+
+  		public void validateGoldenCircleParking(String Days){
+
+  			switch(Days){
+  			case("1Day"):
+  				// THU Parking and Friday Parking
+  				catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Recommendation.GoldenThursday",this.ormData));
+  			catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Recommendation.GoldenFriday",this.ormData));
+  			break;
+  			case("2Day"):
+  				// THU Parking and Sat and Sun Parking
+  				catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Recommendation.GoldenThursday",this.ormData));
+  			catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Recommendation.GoldenSaturday",this.ormData));
+  			catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Recommendation.GoldenSunday",this.ormData));
+  			break;
+  			case("3Day"):
+  				// THU Parking and Fri Sat and Sun Parking and Combo Package
+  				catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Recommendation.GoldenThursday",this.ormData));
+  			catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Recommendation.GoldenFriday",this.ormData));  
+  			catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Recommendation.GoldenSaturday",this.ormData));
+  			catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Recommendation.GoldenSunday",this.ormData));
+  			catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".Recommendation.GoldenCombo",this.ormData));
+  			break;
+
+
+  			}
+
+  		}
+  			
+  			
+  			@Then("^user is able to validate recommendations for WRX Product$")
+  		public void user_is_able_to_validate_recommendations_for_wrx_product() throws Throwable {
+  			Thread.sleep(5000);
+  			catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".WRX.WarnerBros",this.ormData));
+  			catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".WRX.SilverParking",this.ormData));
+  			catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".WRX.FerrariWorld",this.ormData));
+  			catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".WRX.YasWaterWorld",this.ormData));
+  			
+  		}
+
+  		@Then("^user is able to see all WRX product on world rallycross tab$")
+  		public void user_is_able_to_see_all_wrx_product_on_world_rallycross_tab() throws Throwable {
+  			Thread.sleep(2000);
+  			catsAction.clickJS(CustomRules.locatorPresentInSite(website+".WRX.WorldRallycross",this.ormData));
+  			Thread.sleep(3000);
+  			catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".WRX.NorthClub",this.ormData));
+  			catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".WRX.GeneralAdmission",this.ormData));
+  			catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".WRX.Hospitality",this.ormData));
+  		}
+  		  
+  		  
 
 }

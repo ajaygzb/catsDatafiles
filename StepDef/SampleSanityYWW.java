@@ -93,8 +93,6 @@ public class SampleSanityYWW extends CATSCucumberConfig{
 	}
 
 
-
-
 	@When("YWW User click on submit button for registration")
 	public void yww_User_click_on_submit_button_for_registration() {
 		// Write code here that turns the phrase above into concrete actions
@@ -103,8 +101,6 @@ public class SampleSanityYWW extends CATSCucumberConfig{
 		catsAction.click(CustomRules.locatorPresentInSite(website+".Registration.Submit",this.ormData));
 
 	}
-
-
 	@When("YWW User clicks on Buy Ticket CTA")
 	public void yww_User_clicks_on_Buy_Ticket_CTA() throws InterruptedException {
 		// Write code here that turns the phrase above into concrete actions

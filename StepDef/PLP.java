@@ -108,8 +108,8 @@ public class PLP extends CATSCucumberConfig{
 
 	//----------------------------------Book Now button--------------------------------------------------------------------------------
 	public void clickBookNowButtonOfGivenFeature(String featureName) throws Throwable {
-
-
+        catsAction.scrollPageUp();
+        Thread.sleep(5000);
 		String featureLabelNameListPath =catsVariable.getORM(website + ".HomePage.FeatureLabelNameListPath").getXpath();
 		System.out.println("featureLabelNameListPath........."+featureLabelNameListPath);
 		List<WebElement> FeatureLabelName = getDriver().findElements(By.xpath(featureLabelNameListPath));
@@ -125,9 +125,37 @@ public class PLP extends CATSCucumberConfig{
 			if(FeatureLabelName.get(k).getText().equalsIgnoreCase(featureName))
 			{
 				System.out.println("Inside if");
-				Thread.sleep(10000);
-				catsAction.click("(//div[@class='buy-ticket-cta']/button)["+(k+1)+"]");
-				
+				Thread.sleep(3000);
+		//		catsAction.click("(//div[@class='buy-ticket-cta']/button)["+(k+1)+"]");
+				catsAction.click("//h3[contains(text(),'"+featureName+"')]/parent::div/following-sibling::div[contains(@class,'btn-wrapper')]/div[@class='buy-ticket-cta']/button");
+				break;
+			}
+			
+		} 
+
+	}
+	
+	public void clickExploreCTAOfGivenFeature(String featureName) throws Throwable {
+		catsAction.scrollPageUp();
+        Thread.sleep(5000);
+		String featureLabelNameListPath =catsVariable.getORM(website + ".HomePage.FeatureLabelNameListPath").getXpath();
+		System.out.println("featureLabelNameListPath........."+featureLabelNameListPath);
+		List<WebElement> FeatureLabelName = getDriver().findElements(By.xpath(featureLabelNameListPath));
+		System.out.println("FeatureLabelName count......"+FeatureLabelName.size());
+		//System.out.println("featureLabelName ........."+FeatureLabelName);
+		System.out.println("Feature Label Name validation.........." +featureName);
+		for (int k=0; k<FeatureLabelName.size();k++)
+		{
+			/*System.out.println("Feature Label Name" +FeatureLabelName.get(k).getText());
+			System.out.println("Feature Label Name.........." +featureName);
+			System.out.println("(//div[@class='buy-ticket-cta']/button)["+(k+1)+"]");
+			 */
+			if(FeatureLabelName.get(k).getText().equalsIgnoreCase(featureName))
+			{
+				System.out.println("Inside if");
+				Thread.sleep(3000);
+				catsAction.clickJS("//h3[contains(text(),'"+featureName+"')]/parent::div/following-sibling::div[contains(@class,'btn-wrapper')]/div[@class='readMoreCTA']/a");
+		//		catsAction.click("(//div[@class='readMoreCTA']/a)["+(k+1)+"]");
 				break;
 			}
 			
@@ -454,12 +482,16 @@ public class PLP extends CATSCucumberConfig{
 
 	@When("^User clicks on main Menu Formula1 item and select \"([^\"]*)\"$")
 	public void user_clicks_on_main_menu_Formula1_item_and_select_something(String subMenuItem) throws Throwable {
-		System.out.println("user is clicking Formula1 tab");
-		System.out.println("user is clicking Formula1 tab sub Menu item" +subMenuItem);
-		Thread.sleep(3000);
-		catsAction.hoverNClickSubItem(CustomRules.locatorPresentInSite(website + ".HomePage.GlobalHeaderMenuBarlistFormula1",this.ormData),subMenuItem);
+//		System.out.println("user is clicking Formula1 tab");
+//		System.out.println("user is clicking Formula1 tab sub Menu item" +subMenuItem);
+//		Thread.sleep(3000);
+//		catsAction.hoverNClickSubItem(CustomRules.locatorPresentInSite(website + ".HomePage.GlobalHeaderMenuBarlistFormula1",this.ormData),subMenuItem);
 		Thread.sleep(5000);
+		catsAction.navigateTo("https://fe-dev4-ux-apps-cd.azurewebsites.net/en/ymc/f1listingpage");
+		Thread.sleep(10000);
+		catsAction.pageLoadWait();
 	}
+
 
 	@And("^User select Non-Dated feature \"([^\"]*)\" and click on book now button.$")
 	public void user_select_NonDated_feature_something_and_click_on_book_now_button(String featureName) throws Throwable {
@@ -803,19 +835,40 @@ public class PLP extends CATSCucumberConfig{
 	}
 	
 	@And("^User select Non-Dated product \"([^\"]*)\" and click on book now button.$")
-	public void user_select_NonDated_product_something_and_click_on_book_now_button(String featureName) throws Throwable {
+    public void user_select_NonDated_product_something_and_click_on_book_now_button(String featureName) throws Throwable {
+           Thread.sleep(6000);
+           System.out.println("product to search" +featureName);
+           List<WebElement> noOfLoadMore = getDriver().findElementsByXPath(catsVariable.getORM(website+".Product_PLP.LoadMore").getXpath()); 
+           System.out.println("noOfLoadMore: "+noOfLoadMore.size());
+   		   for(int i=0; i<noOfLoadMore.size();i++)
+   	    	{
+   			Thread.sleep(6000);
+   			catsAction.scrollIntoView(CustomRules.locatorPresentInSite(website+".Product_PLP.LoadMore",this.ormData));
+            catsAction.clickJS(CustomRules.locatorPresentInSite(website+".Product_PLP.LoadMore",this.ormData));
+   	    	}
+           clickBookNowButtonOfGivenFeature(featureName);
+           Thread.sleep(6000);
+   	    	
+    }
+	
+	@And("^User select Non-Dated product \"([^\"]*)\" and click on explore CTA button$")
+    public void user_select_nondated_product_something_and_click_on_explore_cta_button(String strArg1) throws Throwable {
+		 Thread.sleep(6000);
+         System.out.println("product to search" +strArg1);
+         List<WebElement> noOfLoadMore = getDriver().findElementsByXPath(catsVariable.getORM(website+".Product_PLP.LoadMore").getXpath()); 
+         System.out.println("noOfLoadMore: "+noOfLoadMore.size());
+ 		   for(int i=0; i<noOfLoadMore.size();i++)
+ 	    	{
+ 			Thread.sleep(6000);
+ 			catsAction.scrollIntoView(CustomRules.locatorPresentInSite(website+".Product_PLP.LoadMore",this.ormData));
+          catsAction.clickJS(CustomRules.locatorPresentInSite(website+".Product_PLP.LoadMore",this.ormData));
+ 	    	}
+         clickExploreCTAOfGivenFeature(strArg1);
+         Thread.sleep(5000);
+         catsAction.scrollIntoView(CustomRules.locatorPresentInSite(website+".PDPbook.BookNow",this.ormData));
+         catsAction.clickJS(CustomRules.locatorPresentInSite(website+".PDPbook.BookNow",this.ormData));
+         Thread.sleep(8000);
 		
-		catsAction.pageLoadWait();
-        Thread.sleep(8000);
-		System.out.println("product to search" +featureName);
-		 
-		// Add step to click on Load more.
-		clickBookNowButtonOfGivenFeature(featureName);
-		catsAction.pageLoadWait();
-		Thread.sleep(2000);
-		//catsAction.waitUntilElementNotDisplay("//*[@class='loading']", "30");
-		
-
 	}
 	
 	//  MAR-31	
@@ -1077,6 +1130,60 @@ public class PLP extends CATSCucumberConfig{
 		catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website+".MyPayment.NoTicketInCartLabel",this.ormData));
 	}
 
+	@Then("^Verify OtherTab should not come$")
+	public void verify_othertab_should_not_come() throws Throwable 
+	{
+
+		catsAction.verifyElementNotPresent(CustomRules.locatorPresentInSite(website + ".PDPbook.DragTab",this.ormData));
+		Thread.sleep(1000);
+		catsAction.verifyElementNotPresent(CustomRules.locatorPresentInSite(website + ".PDPbook.DriveTab",this.ormData));
+		catsAction.verifyElementNotPresent(CustomRules.locatorPresentInSite(website + ".PDPbook.RideTab",this.ormData));
+		Thread.sleep(1000);
+		catsAction.verifyElementNotPresent(CustomRules.locatorPresentInSite(website + ".PDPbook.DriftTab",this.ormData));
+		catsAction.verifyElementNotPresent(CustomRules.locatorPresentInSite(website + ".PDPbook.TourTab",this.ormData));
+		Thread.sleep(1000);
+		catsAction.verifyElementNotPresent(CustomRules.locatorPresentInSite(website + ".PDPbook.GiftVoucher",this.ormData));
+		catsAction.verifyElementNotPresent(CustomRules.locatorPresentInSite(website + ".PDPbook.MotorSport",this.ormData));
+
+
+			}
+	
+	@And("^Verify all tabmenu should come$")
+	public void verify_all_tabmenu_should_come() throws Throwable
+	{
+		catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website + ".PDPbook.DragTab",this.ormData));
+		Thread.sleep(1000);
+		catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website + ".PDPbook.DriveTab",this.ormData));
+		Thread.sleep(1000);
+		catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website + ".PDPbook.RideTab",this.ormData));
+		Thread.sleep(1000);
+		catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website + ".PDPbook.DriftTab",this.ormData));
+		Thread.sleep(1000);
+		catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website + ".PDPbook.TourTab",this.ormData));
+		Thread.sleep(1000);
+		catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website + ".PDPbook.GiftVoucher",this.ormData));
+		Thread.sleep(1000);
+		catsAction.verifyElementPresent(CustomRules.locatorPresentInSite(website + ".PDPbook.MotorSport",this.ormData));
+		
+	}
+	
+	@Then("^User able to see Enter Shipping Address Field$")
+	public void user_able_to_see_enter_shipping_address_field() throws Throwable 
+	{
+		Thread.sleep(3000);
+		catsAction.verifyTextContainsIgnoreCase(CustomRules.locatorPresentInSite(website+".PDPbook.AddressText",this.ormData), "Enter");
+
+	}
+	
+	@Then("^User able to see Shipping charge added$")
+	public void user_able_to_see_shipping_charge_added() throws Throwable 
+	{
+		Thread.sleep(3000);
+		catsAction.clickJS(CustomRules.locatorPresentInSite(website+".Payment.GridExpandBtn",this.ormData));
+		Thread.sleep(3000);
+		catsAction.verifyTextContainsIgnoreCase(CustomRules.locatorPresentInSite(website+".PDPbook.AddressText",this.ormData), "AED");
+
+	}
 
 
 }
